@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+@media (height: 100vh) {
+    body {
+        background-image: url('assets/pink-background.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+
+.fullscreen-text {
+    font-size: 18px;
+    color: #333;
+}
+
+.audio-container {
+    display: none;
+}
+
+#audio-player {
+    width: 30px;
+}
+
+#audio-player::-webkit-media-controls-panel,
+#audio-player::-webkit-media-controls-current-time-display,
+#audio-player::-webkit-media-controls-time-remaining-display,
+#audio-player::-webkit-media-controls-enclosure,
+#audio-player::-webkit-media-controls-volume-control-container {
+    display: none;
+}
