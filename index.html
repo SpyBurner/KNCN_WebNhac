@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Your Website Title</title>
-</head>
-<body>
-    <div class="fullscreen-text" id="fullscreen-text">Maximize your experience with F11 fullscreen.</div>
-    <!-- <iframe src="assets/silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe> -->
-    <div class="audio-container">
-        <audio controls id="audio-player">
-            <source src="assets/Taylor Swift - Love Story (Piano Cover by Riyandi Kusuma).mp3" type="audio/mp3">
-        </audio>
-        It's recommended to use headphones for the best experience.
+<header>
+  <title>Audio Player</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" href="#" />
+</header>
+<html>
+  <body>
+    <div id="player"></div>
+    <p id="videoTitle"></p> 
+    <div class="buttonClass">
+        <button id="play">Play</button>
+        <button id="next">Next</button>
     </div>
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

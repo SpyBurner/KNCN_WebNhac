@@ -8,34 +8,15 @@ body {
     justify-content: center;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    background-image: url('https://www.transparenttextures.com/patterns/brushed-alum-dark.png');
+
 }
 
-@media (height: 100vh) {
-    body {
-        background-image: url('assets/pink-background.jpg');
-        background-size: cover;
-        background-position: center;
-    }
-}
-
-
-.fullscreen-text {
-    font-size: 18px;
-    color: #333;
-}
-
-.audio-container {
-    display: none;
-}
-
-#audio-player {
-    width: 30px;
-}
-
-#audio-player::-webkit-media-controls-panel,
-#audio-player::-webkit-media-controls-current-time-display,
-#audio-player::-webkit-media-controls-time-remaining-display,
-#audio-player::-webkit-media-controls-enclosure,
-#audio-player::-webkit-media-controls-volume-control-container {
-    display: none;
+/* ButtonClass to the center of the website */
+.buttonClass {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    color: tomato;
 }
