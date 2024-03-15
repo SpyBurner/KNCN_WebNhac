@@ -28,6 +28,7 @@ function onYouTubeIframeAPIReady() {
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
+  updateVideoTitle(videosArray[currentVideoIndex][1]['title']);
   event.target.playVideo();
 }
 
@@ -70,7 +71,7 @@ document.getElementById('next').addEventListener('click', () => {
 });
 
 // Initialize a variable to track whether the audio is currently playing
-var isPlaying = false;
+var isPlaying = true;
 
 // Function to toggle audio play/pause
 function toggleAudio() {
