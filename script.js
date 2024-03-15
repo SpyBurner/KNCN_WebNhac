@@ -1,10 +1,5 @@
-var data = {
-  "scQu6EPsuxw": "Driftveil City: 8-Bit Remix",
-  "6-wEAeNcA_A": "Lindsey Stirling - Senbonzakura",
-  "TxTprtLZurY": "Bad Apple- (Orchestral Arrangement) Instrumental",
-  "cBsUr4UMcD0": "Point the star | Lofi",
-}
-const videosArray = Object.entries(data);
+const videosArray = Object.entries(window.videoData);
+console.log(videosArray);
 let currentVideoIndex = 0;
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
@@ -20,7 +15,7 @@ function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '0',
     width: '0',
-    videoId: videosArray[currentVideoIndex][0],
+    videoId: videosArray[currentVideoIndex][1]['id'],
     playerVars: {
       'playsinline': 1
     },
@@ -41,9 +36,9 @@ function onPlayerReady(event) {
 //    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    // setTimeout(stopVideo, 6000);
-    // done = true;
+  if (event.data === YT.PlayerState.ENDED) {
+    // Play the next video when the current video ends
+    playVideo((currentVideoIndex + 1) % videosArray.length);
   }
 }
 function stopVideo() {
@@ -61,11 +56,13 @@ function playVideo(index) {
     return;
   }
   if (player) { // Check if player is defined before using it
-    console.log('Playing video at index:', videosArray[index][0]);
-    player.loadVideoById({ 'videoId': videosArray[index][0] });
+    console.log('Playing video at index:', videosArray[index]);
+    player.loadVideoById({ 'videoId': videosArray[index][1]['id'],
+                           'startSeconds': videosArray[index][1]['startTime'],                      
+    });
   }
   currentVideoIndex = index;
-  updateVideoTitle(videosArray[currentVideoIndex][1]);
+  updateVideoTitle(videosArray[currentVideoIndex][1]['title']);
 }
 
 document.getElementById('next').addEventListener('click', () => {
