@@ -45,36 +45,46 @@ body {
 
 /* ButtonClass to the center of the website */
 .buttonClass {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    color: tomato;
-    button {
-        border-radius: 5px;
-        background-color: #4CAF50; /* Green color for play button */
-        color: white;
-        padding: 10px 20px;
-        margin: 10px;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #3e8e41; /* Darker green on hover */
-      }
-}
+    display: flex; /* Arranges buttons in a row */
+    justify-content: space-around; /* Evenly distributes buttons */
+    width: fit-content; /* Prevents unnecessary extra space */
+    margin: 10px auto; /* Adds some margin for spacing */
+  }
+  
+  .buttonClass button {
+    background-color: transparent; /* Makes buttons transparent */
+    border: none; /* Removes borders */
+    cursor: pointer; /* Indicates clickable elements */
+    font-size: 1rem; /* Sets button text size */
+    color: inherit; /* Inherits color from parent element */
+    padding: 5px 10px; /* Adds some padding for spacing */
+    transition: all 0.2s ease-in-out; /* Adds smooth hover effect */
+  }
+  
+  .buttonClass button:hover {
+    transform: scale(1.1); /* Makes buttons slightly bigger on hover */
+    color: white; /* Changes button text color on hover */
+  }
+  
+  
 
 select#playlist {
     background-color: #f1f1f1;
     border: 1px solid #ddd;
     padding: 5px;
-    font-size: 16px;
+    font-size: 20px;
+    font-family: "Cute Font", sans-serif;
     align-items: center;
     border: 1px solid #ccc;
     padding: 8px 16px;
     border-radius: 4px;
     cursor: pointer;
   }
-  
+  select#playlist option {
+    font-size: 20px;
+    font-family: "Cute Font", sans-serif;
+    /* Adjust font size as desired */
+}
   select#playlist:hover {
     background-color: #e0e0e0;
     border-color: #aaa;

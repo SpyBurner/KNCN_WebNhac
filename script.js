@@ -40,6 +40,8 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
   event.target.playVideo();
   updateVideoTitle(videosArray[currentVideoIndex][1]['title']);
+  var playButton = document.getElementById("play");
+  playButton.innerHTML = '<i class="fas fa-pause"></i>';
 }
 
 // 5. The API calls this function when the player's state changes.
@@ -92,6 +94,8 @@ function toggleAudio() {
         player.playVideo(); // Play the video
     }
     isPlaying = !isPlaying; // Toggle the state
+    var playButton = document.getElementById("play");
+    playButton.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
 }
 
 // Event listener for the button click

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <header>
-  <title>Audio Player</title>
+  <title>STELODY</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="shortcut icon" href="#" />
 </header>
 <html>
@@ -20,8 +21,11 @@
                 <option value="8-bit">8-bit music</option>
                 <option value="My Playlist">My Playlist</option>
             </select>
-            <button id="play">Play</button>
-            <button id="next">Next</button>
+            <div class="buttonClass">
+                <button id="prev"><i class="fas fa-step-backward"></i></button>
+                <button id="play"><i class="fas fa-play"></i></button>
+                <button id="next"><i class="fas fa-step-forward"></i></button>
+            </div>
         </div>
         <p id="videoTitle"></p>
     </div>
