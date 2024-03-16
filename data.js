@@ -1,3 +1,24 @@
+listOfBackground = [
+    '215948.gif',
+    '7heR4JA-ezgif.com-resize.gif',
+    'AnasAbdin_Photo-ezgif.com-resize.gif',
+    'CafebynoaqhonDeviantArt-ezgif.com-resize.gif',
+    'CatPeopleIIScenefromMusicvideobyValenbergonDeviantArt-ezgif.com-resize.gif',     
+    // 'Chill Mario.gif',
+    'CoffeeBreakPixelJeff-ezgif.com-resize.gif',
+    'download-ezgif.com-resize.gif',
+    'imgur_com-ezgif.com-resize.gif',
+    'iXmWbAN-ezgif.com-resize.gif',
+    // 'Onlythecomfiestpixelsforyou_-ezgif.com-resize.gif',
+    'Pixel Art Gif.gif',
+    'PixelartGIF-Pixelart-DiscoverShareGIFs-ezgif.com-resize.gif',
+    'PixelArtKitchenGIF-PixelArtKitchenCafe-DiscoverShareGIFs-ezgif.com-resize.gif',  
+    'PixelStudyGIF-PixelStudy-DiscoverShareGIFs-ezgif.com-resize.gif',
+    'PriestessDandelion_Photo-ezgif.com-resize.gif',
+    'rBgfdvL.gif',
+    'sadpixelartgif-ezgif.com-resize.gif',
+    'TeaCoffeeandBooks-ezgif.com-resize.gif',
+]
 window.videoData = {
     "0": {
         "id": "OiR4Wqi7pGY",
@@ -3006,18 +3027,30 @@ window.videoData = {
         "length": 0
     },
     "500": {
+        "id": "YVJC6bSvd-o",
+        "title": "BLACKPINK - 'Pretty Savage' OFFICIAL REAL INSTRUMENTAL",
+        "startTime": 0,
+        "length": 199
+    },
+    "501": {
         "id": "ttYwgwtFzus",
+        "title": "LE SSERAFIM - ANTIFRAGILE | Instrumental",
+        "startTime": "0",
+        "length": 191
+      },
+    "502": {
+        "id": "scQu6EPsuxw",
         "title": "Driftveil City: 8-Bit Remix",
         "startTime": "0",
         "length": 163
       },
-      "501": {
+      "503": {
         "id": "6-wEAeNcA_A",
         "title": "Lindsey Stirling - Senbonzakura",
         "startTime": "0",
         "length": 204
     },
-    "502": {
+    "504": {
         "id": "TxTprtLZurY",
         "title": "Bad Apple - (Orchestral Arrangement) Instrumental",
         "startTime": "0",

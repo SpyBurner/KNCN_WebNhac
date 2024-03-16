@@ -1,3 +1,11 @@
+let currentIndex = 0;
+const nextBackground = () => {
+    currentIndex = (currentIndex + 1) % listOfBackground.length;
+    document.body.style.backgroundImage = `url(assets/${listOfBackground[currentIndex]})`;
+};
+
+const nextButton = document.getElementById('nextButton');
+nextButton.addEventListener('click', nextBackground);
 // 4: Lofi hiphop - 167: Kpop music - 278: Classical music - 325: Asian Traditional music - 350: 8-bit
 var indexOfPlaylist = {
   "Lofi hiphop": 4,
