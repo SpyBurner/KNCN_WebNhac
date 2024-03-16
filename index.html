@@ -2,17 +2,30 @@
 <header>
   <title>Audio Player</title>
   <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="#" />
 </header>
 <html>
   <body>
+    <!-- Playlist dropdown -->
     <div id="player"></div>
-    <p id="videoTitle"></p> 
-    <div class="buttonClass">
-        <button id="play">Play</button>
-        <button id="next">Next</button>
+      <div class="video-control">
+        <div class="controls">
+            <select name="playlist" id="playlist">
+                <option value="Random">Random</option>
+                <option value="Lofi hiphop">Lofi hiphop</option>
+                <option value="Kpop">Kpop Music</option>
+                <option value="Classical">Classical Music</option>
+                <option value="Asian Traditional">Asian Traditional Music</option>
+                <option value="8-bit">8-bit music</option>
+                <option value="My Playlist">My Playlist</option>
+            </select>
+            <button id="play">Play</button>
+            <button id="next">Next</button>
+        </div>
+        <p id="videoTitle"></p>
     </div>
-
+  
     <script src="data.js"></script>  
     <script src="script.js"></script>
   </body>

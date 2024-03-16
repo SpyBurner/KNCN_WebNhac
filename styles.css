@@ -6,9 +6,40 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    background-image: url('https://www.transparenttextures.com/patterns/brushed-alum-dark.png');
+    font-family: "Cute Font", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: orange;
+    background-image: url(assets/215948.gif);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+.video-control {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 9999; /* Ensure it's above other content */
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+}
+
+.controls select {
+    margin-right: 10px;
+}
+
+#videoTitle {
+    margin-top: 10px; /* Adjust as needed */
+    color: white;
+    font-size: 20px;
 
 }
 
@@ -19,4 +50,32 @@ body {
     align-items: center;
     margin-top: 20px;
     color: tomato;
+    button {
+        border-radius: 5px;
+        background-color: #4CAF50; /* Green color for play button */
+        color: white;
+        padding: 10px 20px;
+        margin: 10px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #3e8e41; /* Darker green on hover */
+      }
 }
+
+select#playlist {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 5px;
+    font-size: 16px;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  select#playlist:hover {
+    background-color: #e0e0e0;
+    border-color: #aaa;
+  }
