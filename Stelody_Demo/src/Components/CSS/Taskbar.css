@@ -1,0 +1,66 @@
+.taskbar {
+    display: flex;
+    max-height: 8%;
+    max-width: 60%;
+    min-width: 580px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    flex: 1;
+    border-radius: 75px;
+    border: 3px solid #232931;
+    background: rgba(82, 74, 121, 0.70);
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4% 3%;
+    margin-bottom: 1.5%;
+}
+
+img {
+    max-height: 100%;
+    width: auto;
+    flex-shrink: 1;
+}
+
+button {
+    box-sizing: border-box;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    height: 5vh;
+    width: auto;
+    flex-shrink: 1;
+}
+
+
+
+.theme {
+    width: 20vw;
+    height: 6vh;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 1.5px solid #97D8EC;
+    background: #3E3245;
+    margin-left: 1.5vw;
+    color: #F6F494;
+    text-align: center;
+    font-family: Coiny;
+    font-size: 100%;
+    font-style: normal;
+    font-weight: 400;
+    padding: 0 1%;
+    line-height: normal;
+}
+
+.play-stop {
+    height: 6.5vh;
+}
+
+.volumn,
+.todo_list,
+.timer {
+    height: 4.3vh;
+}
+
+.header {
+    margin-top: 1.5%;
+}
