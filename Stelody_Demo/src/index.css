@@ -14,7 +14,7 @@
   display: flex;
   flex: auto;
   justify-content: center;
-  align-items: flex-end;
+  /* align-items: flex-end; */
   width: 100%;
 }
 
@@ -24,4 +24,5 @@ body {
   flex: 1;
   min-width: 320px;
   min-height: 100vh;
+  box-sizing: border-box;
 }

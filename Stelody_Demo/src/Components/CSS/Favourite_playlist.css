@@ -1,0 +1,9 @@
+.favourite-playlist {
+    box-sizing: border-box;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    height: 6vh;
+    width: auto;
+    flex-shrink: 1;
+}
