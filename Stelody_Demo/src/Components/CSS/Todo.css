@@ -1,0 +1,112 @@
+.todo {
+    display: none;
+    width: 27%;
+    min-width: 388.3px;
+    max-height: 320.5px;
+    height: 95%;
+    border-radius: 20px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1.4% 3.4%;
+    padding-bottom: 10px;
+    border-radius: 20px;
+    border: 1px solid #232931;
+
+    background: rgba(62, 50, 69, 0.90);
+
+}
+
+.todo-header {
+    display: flex;
+    color: white;
+    width: 100%;
+    font-style: normal;
+    font-size: 30px;
+    font-weight: 400;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.todo-header svg {
+    max-height: 35px;
+    width: auto;
+    flex-shrink: 1;
+    /* flex: 1; */
+}
+
+.todo-add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    padding: 0 8px;
+}
+
+.todo-input {
+    border-radius: 50px;
+    background: #edeef0;
+    border: none;
+    outline: none;
+    width: 70%;
+    height: 30%;
+    padding: 10px 0px;
+    padding-left: 20px;
+    padding-right: 15%;
+    font-size: 15px;
+}
+
+.todo-add-btn{
+    border-radius: 50px;
+    background: #DC9DFA;
+    width: 30%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -10%;
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 0px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.todo-list {
+    margin-top: 16px;
+    min-height: 135px;
+    max-height: 135px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.done-task-number {
+    display: flex;
+    font-family: "Akaya Kanadaka", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 23px;
+    color: #F6F494;
+    justify-content: flex-end;
+}
+
+.todo-list::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  .todo-list::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+   
+  /* Handle */
+  .todo-list::-webkit-scrollbar-thumb {
+    background: #353540; 
+  }
+  
+  /* Handle on hover */
+.todo-list::-webkit-scrollbar-thumb:hover {
+    background: #a52cdc; 
+    ; 
+  }

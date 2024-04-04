@@ -61,6 +61,7 @@ button {
     height: 4.3vh;
 }
 
-.todo-list {
-    height: 4vh;
+.todo-list-icon {
+    height: 4vh
+    /* width: 0; */
 }

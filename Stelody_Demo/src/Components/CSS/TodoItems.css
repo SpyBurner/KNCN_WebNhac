@@ -1,0 +1,51 @@
+.todoitems {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0px;
+    align-items: center;
+}
+
+.todoitems-cross-icon {
+    height: 18px;
+    width: auto;
+}
+
+.todoitems-container {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    padding-left: 16px;
+    gap: 4px;
+    margin-right: 16px;
+    border-radius: 8px;
+    background: rgba(35, 41, 49, 0.60);
+    flex: 1;
+}
+
+.todoitems-container img {
+    height: 18px;
+    width: auto;
+}
+
+.todoitems-text {
+    padding-left: 8px;
+    font-style: normal;  
+    line-height: normal;
+    color: #C1C1C1;
+    font-size: 15px;
+}
+
+.akaya-kanadaka-regular {
+    font-family: "Akaya Kanadaka", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.todoitems-cross-icon {
+    cursor: pointer;
+    padding-right: 8px;
+}
+
+.line-through {
+    text-decoration: line-through solid #DC9DFA 2px;
+}

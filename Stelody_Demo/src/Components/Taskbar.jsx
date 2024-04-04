@@ -14,7 +14,7 @@ import active_timer from '../assets/active-timer.svg'
 import options from '../assets/options.svg'
 import { useState } from 'react'
 
-export const Taskbar = () => {
+export const Taskbar = ({ onToggleTodo}) => {
   const [isFavourite, setFavour] = useState(false);
   const [isPlaying, setPlay] = useState(false);
   const [isMuted, setMute] = useState(false);
@@ -63,7 +63,7 @@ export const Taskbar = () => {
       <button className="timer" onClick={handleTimer}>
         {isTimerActive?<img src={active_timer}/>:<img src={timer}/>}
       </button>
-      <button className="todo-list" onClick={handleTask}>
+      <button className="todo-list-icon" onClick={() => {onToggleTodo(); handleTask();}}>
         {isTaskActive?<img src={active_todo}/>:<img src={todo_list}/>}
       </button>
       <button className="options">
