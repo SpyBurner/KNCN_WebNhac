@@ -14,19 +14,25 @@ import active_timer from '../assets/active-timer.svg'
 import options from '../assets/options.svg'
 import { useState } from 'react'
 
-export const Taskbar = ({ onToggleTodo}) => {
+export const Taskbar = ({ onToggleTod, onPlay, onPause}) => {
   const [isFavourite, setFavour] = useState(false);
   const [isPlaying, setPlay] = useState(false);
   const [isMuted, setMute] = useState(false);
   const [isTimerActive, setActiveTimer] = useState(false);
   const [isTaskActive, setTaskActive] = useState(false);
+  var video = document.querySelector('iframe[src*="youtube.com"]');
 
   const handleFavourite = () => {
     setFavour(!isFavourite);
   };
 
   const handlePlay = () => {
-    setPlay(!isPlaying);
+    if (isPlaying) {
+      onPause(); // Pause the video
+    } else {
+      onPlay(); // Play the video
+    }
+    setPlay(prevState => !prevState); // Toggle play state
   }
 
   const handleMute = () => {
@@ -72,5 +78,4 @@ export const Taskbar = ({ onToggleTodo}) => {
     </div>
   )
 }
-
 

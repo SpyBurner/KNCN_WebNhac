@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: transparent;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -30,4 +30,15 @@ body {
 html {
   padding: 0;
   margin: 0;
+  height: 100%;
+}
+
+#player {
+  display: flex;
+  position: fixed;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  align-items: center;
+  justify-content: center;
 }
