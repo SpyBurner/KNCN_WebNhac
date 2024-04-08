@@ -14,7 +14,7 @@ import active_timer from '../assets/active-timer.svg'
 import options from '../assets/options.svg'
 import { useState } from 'react'
 
-export const Taskbar = ({ onToggleTod, onPlay, onPause}) => {
+export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute}) => {
   const [isFavourite, setFavour] = useState(false);
   const [isPlaying, setPlay] = useState(false);
   const [isMuted, setMute] = useState(false);
@@ -36,7 +36,14 @@ export const Taskbar = ({ onToggleTod, onPlay, onPause}) => {
   }
 
   const handleMute = () => {
-    setMute(!isMuted);
+    if (isMuted){
+      setMute(false);
+      setPlayerUnMute();
+    }
+    else {
+      setMute(true);
+      setPlayerMute();
+    }
   }
 
   const handleTimer = () => {
