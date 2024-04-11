@@ -33,9 +33,17 @@ const App = () => {
   };
 
 
-  // const handlePlayerReady = () => {
-  //   setPlayerReady(true);
-  // };
+  const handlePlayerMute = () => {
+    if (playerRef.current) {
+      playerRef.current.internalPlayer.mute();
+    }
+  }
+
+  const handlePlayerUnMute = () => {
+    if (playerRef.current) {
+      playerRef.current.internalPlayer.unMute();
+    }
+  }
 
   const opts = {
     height: '100%',
@@ -64,7 +72,7 @@ const App = () => {
           <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
             <Todo />
           </div>
-          <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} />
+          <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute}/>
       </div>
   );
 }
