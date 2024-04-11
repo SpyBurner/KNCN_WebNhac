@@ -25,7 +25,22 @@ const App = () => {
       playerRef.current.internalPlayer.playVideo();
     }
   };
-
+  // Play the video by ID
+  const playVideoById = (id, startTime, endTime) => {
+    if (playerRef.current) {
+      playerRef.current.internalPlayer.pauseVideo();
+      var startSeconds = startTime || 0; // Default start time to 0 if not provided
+      var endSeconds = endTime || undefined; // Default end time to undefined if not provided
+      console.log(typeof(startTime), " ",startTime);
+      playerRef.current.internalPlayer.loadVideoById({
+        'videoId': id,
+        'startSeconds': startTime,
+        'endSeconds': endTime
+      });
+    }
+  };
+  
+  
   const pauseVideo = () => {
     if (playerRef.current) {
       playerRef.current.internalPlayer.pauseVideo();
@@ -48,7 +63,7 @@ const App = () => {
   const opts = {
     height: '100%',
     width: '100%',
-    videoId: 'tYiRX7dNMPw',
+    videoId: 'cBsUr4UMcD0',
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 0,
@@ -61,10 +76,11 @@ const App = () => {
       showinfo: 0, // Hide video title and uploader before the video starts playing
     }
   };
-
+  const index = 0;
+  const id = 'TxTprtLZurY';
   return (
       <div className="app">
-        <YouTube className='youtube' videoId='tYiRX7dNMPw' opts={opts} ref={playerRef}/>
+        <YouTube className='youtube' videoId={id} opts={opts} ref={playerRef}/>
           <div className="header">
             <Favourite_playlist />
             <Fullscreen_button />
@@ -72,7 +88,7 @@ const App = () => {
           <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
             <Todo />
           </div>
-          <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute}/>
+          <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} index={index}/>
       </div>
   );
 }

@@ -13,8 +13,9 @@ import timer from '../assets/timer.svg'
 import active_timer from '../assets/active-timer.svg'
 import options from '../assets/options.svg'
 import { useState } from 'react'
-
-export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute}) => {
+import { videoData } from '../assets/data.js';
+const listVideoID = ['TxTprtLZurY','6-wEAeNcA_A','YVJC6bSvd-o', 'cBsUr4UMcD0']
+export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, index}) => {
   const [isFavourite, setFavour] = useState(false);
   const [isPlaying, setPlay] = useState(false);
   const [isMuted, setMute] = useState(false);
@@ -35,6 +36,26 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
     setPlay(prevState => !prevState); // Toggle play state
   }
 
+  const handleNext = () => {
+    var len = Object.keys(videoData).length;
+    index = (index + 1) % len;
+    var video = videoData[index];
+    var id = video.id;
+    var startTime = parseInt(video.startTime);
+    
+    var endTime = parseInt(video.startTime) + parseInt(video.length);
+    console.log(startTime," ", endTime);
+    playVideoById(id, startTime, endTime); // Video play the video with the next ID
+  }
+  const handlePrevious = () => {
+    var len = Object.keys(videoData).length;
+    index = (index - 1 + len) % len;
+    var video = videoData[index];
+    var id = video.id;
+    var startTime = parseInt(video.startTime);
+    var endTime = parseInt(video.startTime) + parseInt(video.length);
+    playVideoById(id, startTime, endTime); // Video play the video with the previous ID
+  }
   const handleMute = () => {
     if (isMuted){
       setMute(false);
@@ -60,13 +81,13 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
         {isFavourite? <img src={add_to_favourite}/> : <img src={favourite}/> } 
       </button>
       <button className="theme">Rain in the forest</button>
-      <button className="previous">
+      <button className="previous" onClick={handlePrevious}>
         <img src={previous}></img>
       </button>
       <button className="play-stop" onClick={handlePlay}>
         {isPlaying?<img src={pause} alt = "Pause"/>:<img src={play} alt = "Play"/>}
       </button>
-      <button className="next">
+      <button className="next" onClick={handleNext}>
         <img src={next}></img>
       </button>
       <button className="volumn" onClick={handleMute}>
