@@ -19,21 +19,6 @@ export const listOfBackground = [
     'sadpixelartgif-ezgif.com-resize.gif',
     'TeaCoffeeandBooks-ezgif.com-resize.gif',
 ]
-export const fetchVideoData = async (themeId) => {
-    try {
-        const response = await fetch('/api/songs?' + new URLSearchParams({ theme: themeId }));
-
-        if (!response.ok) {
-            throw new Error('Failed to fetch video data');
-        }
-        const jsonData = await response.json();
-
-        return jsonData;
-    } catch (error) {
-        console.error('Error fetching video data:', error);
-        return null; // or handle the error as appropriate
-    }
-};
 
 export const fetchThemeData = async () => {
     try {
@@ -44,14 +29,30 @@ export const fetchThemeData = async () => {
         }
         const jsonData = await response.json();
 
-        return jsonData;
+        return themeData = jsonData;
     } catch (error) {
         console.error('Error fetching theme data:', error);
-        return null; // or handle the error as appropriate
+        return themeData = null; // or handle the error as appropriate
     }
 };
 
 export var themeData = await fetchThemeData();
+
+export const fetchVideoData = async (themeId) => {
+    try {
+        const response = await fetch('/api/songs?' + new URLSearchParams({ theme: themeId }));
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch video data');
+        }
+        const jsonData = await response.json();
+
+        return videoData = jsonData;
+    } catch (error) {
+        console.error('Error fetching video data:', error);
+        return videoData = null; // or handle the error as appropriate
+    }
+};
 
 export var videoData = await fetchVideoData(themeData[0].id);
 // {
