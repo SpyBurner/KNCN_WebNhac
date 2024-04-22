@@ -1,13 +1,51 @@
-const express = require("express");
-
-const PORT = process.env.PORT || 3001;
+const express = require('express');
+const path = require('path');
 
 const app = express();
 
-app.get("/api", (req, res) => {
-    res.json({ message: "Hello from server!" });
+var mysql = require('mysql2');
+const e = require('express');
+const { exit } = require('process');
+const { log } = require('console');
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "password",
+    database: "sql6686471"
 });
 
-app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
+con.connect(function (err) {
+    if (err) throw err;
+    console.log("Connected!");
+});
+
+app.use(express.static('public'));
+
+app.listen(3000, () => {
+    console.log("App listening on port 3000");
+})
+
+// Endpoints
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/index.html'));
+});
+
+app.get('/api/themes', (req, res) => {
+    con.query("SELECT * FROM themes", function (err, result, fields) {
+        if (err) {
+            console.log("QUERY FAILED!");
+            exit;
+        }
+        res.json(result);
+    });
+});
+
+app.get('/api/songs', (req, res) => {
+    con.query("SELECT * FROM songs WHERE theme_id = '" + req.query.theme + "';", function(err, result, field){
+        if (err){
+            console.log("QUERY FAILED!");
+            exit;
+        }
+        res.json(result);
+    });
 });
