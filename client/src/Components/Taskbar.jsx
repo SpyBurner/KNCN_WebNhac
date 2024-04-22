@@ -40,21 +40,23 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
     var len = Object.keys(videoData).length;
     index = (index + 1) % len;
     var video = videoData[index];
-    var id = video.id;
-    var startTime = parseInt(video.startTime);
+    var id = video.song_code;
+    // var startTime = parseInt(video.startTime);
     
-    var endTime = parseInt(video.startTime) + parseInt(video.length);
-    console.log(startTime," ", endTime);
-    playVideoById(id, startTime, endTime); // Video play the video with the next ID
+    // var endTime = parseInt(video.startTime) + parseInt(video.length);
+    // console.log(startTime," ", endTime);
+    playVideoById(id, 0, undefined); // Video play the video with the next ID
+    setPlay(true);
   }
   const handlePrevious = () => {
     var len = Object.keys(videoData).length;
     index = (index - 1 + len) % len;
     var video = videoData[index];
-    var id = video.id;
-    var startTime = parseInt(video.startTime);
-    var endTime = parseInt(video.startTime) + parseInt(video.length);
-    playVideoById(id, startTime, endTime); // Video play the video with the previous ID
+    var id = video.song_code;
+    // var startTime = parseInt(video.startTime);
+    // var endTime = parseInt(video.startTime) + parseInt(video.length);
+    playVideoById(id, 0, undefined); // Video play the video with the previous ID
+    setPlay(true);
   }
   const handleMute = () => {
     if (isMuted){

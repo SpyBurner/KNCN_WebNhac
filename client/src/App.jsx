@@ -5,6 +5,7 @@ import { Fullscreen_button } from "./Components/Fullscreen_button";
 import { Favourite_playlist } from "./Components/Favourite_playlist";
 import { Todo } from "./Components/Todo";
 import YouTube from 'react-youtube';
+import { videoData } from './assets/data';
 
 const App = () => {
   const [openTodolist, setOpenTodoList] = useState(false);
@@ -29,13 +30,13 @@ const App = () => {
   const playVideoById = (id, startTime, endTime) => {
     if (playerRef.current) {
       playerRef.current.internalPlayer.pauseVideo();
-      var startSeconds = startTime || 0; // Default start time to 0 if not provided
-      var endSeconds = endTime || undefined; // Default end time to undefined if not provided
+      // var startSeconds = 0; // Default start time to 0 if not provided
+      // var endSeconds = undefined; // Default end time to undefined if not provided
       console.log(typeof(startTime), " ",startTime);
       playerRef.current.internalPlayer.loadVideoById({
         'videoId': id,
-        'startSeconds': startTime,
-        'endSeconds': endTime
+        // 'startSeconds': startTime,
+        // 'endSeconds': endTime
       });
     }
   };
@@ -77,7 +78,8 @@ const App = () => {
     }
   };
   const index = 0;
-  const id = 'TxTprtLZurY';
+  // const id = 'TxTprtLZurY';
+  const id = videoData[index].song_code;
   return (
       <div className="app">
         <YouTube className='youtube' videoId={id} opts={opts} ref={playerRef}/>
