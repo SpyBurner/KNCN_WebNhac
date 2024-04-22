@@ -22,10 +22,12 @@ export const listOfBackground = [
 export const fetchVideoData = async (themeId) => {
     try {
         const response = await fetch('/api/songs?' + new URLSearchParams({ theme: themeId }));
+
         if (!response.ok) {
             throw new Error('Failed to fetch video data');
         }
         const jsonData = await response.json();
+
         return jsonData;
     } catch (error) {
         console.error('Error fetching video data:', error);
@@ -33,7 +35,25 @@ export const fetchVideoData = async (themeId) => {
     }
 };
 
-export var videoData = await fetchVideoData(1);
+export const fetchThemeData = async () => {
+    try {
+        const response = await fetch('/api/themes');
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch theme data');
+        }
+        const jsonData = await response.json();
+
+        return jsonData;
+    } catch (error) {
+        console.error('Error fetching theme data:', error);
+        return null; // or handle the error as appropriate
+    }
+};
+
+export var themeData = await fetchThemeData();
+
+export var videoData = await fetchVideoData(themeData[0].id);
 // {
 //     "0": {
 //         "id": "OiR4Wqi7pGY",
