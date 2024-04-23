@@ -1,0 +1,18 @@
+.themelist {
+    display: none;
+    width: 27%;
+    min-width: 10vw;
+    max-height: 30vh;
+    height: 95%;
+    border-radius: 20px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1.4% 3.4%;
+    padding-bottom: 10px;
+    border-radius: 20px;
+    border: 1px solid #232931;
+
+    background: rgba(62, 50, 69, 0.90);
+
+}

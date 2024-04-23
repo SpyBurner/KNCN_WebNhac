@@ -31,7 +31,10 @@ button {
     flex-shrink: 1;
 }
 
-
+@keyframes move {
+    0%, 100%   { transform: translate(0, 0); }
+    50% { transform: translate(-100%, 0); }
+}
 
 .theme {
     width: 20vw;
@@ -50,7 +53,14 @@ button {
     padding: 0 1%;
     line-height: normal;
     max-width: 25%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
 }
+
 
 .play-stop {
     height: 5.5vh;

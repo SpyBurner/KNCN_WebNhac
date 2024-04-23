@@ -17,7 +17,7 @@ import { useState } from 'react'
 const listVideoID = ['TxTprtLZurY','6-wEAeNcA_A','YVJC6bSvd-o', 'cBsUr4UMcD0']
 export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, setPlay, 
     isPlaying, videoData, setVideoId, videoId,
-    themeName, toggleThemeList
+    toggleThemeList, videoName
   }) => {
   const [isFavourite, setFavour] = useState(false);
   // const [isPlaying, setPlay] = useState(false);
@@ -41,26 +41,12 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
 
   const handleNext = () => {
     var len = videoData.length;
-    // videoId = (videoId + 1) % len;
     setVideoId((videoId + 1) % len);
-    // var video = videoData[videoId];
-    // var videoCode = video.song_code;
-    // var startTime = parseInt(video.startTime);
-    
-    // var endTime = parseInt(video.startTime) + parseInt(video.length);
-    // console.log(startTime," ", endTime);
-    // playVideoById(videoCode, 0, undefined); // Video play the video with the next ID
     setPlay(true);
   }
   const handlePrevious = () => {
     var len = videoData.length;
-    // videoId = (videoId - 1 + len) % len;
     setVideoId((videoId - 1 + len) % len)
-    // var video = videoData[videoId];
-    // var videoCode = video.song_code;
-    // var startTime = parseInt(video.startTime);
-    // var endTime = parseInt(video.startTime) + parseInt(video.length);
-    // playVideoById(videoCode, 0, undefined); // Video play the video with the previous ID
     setPlay(true);
   }
   const handleMute = () => {
@@ -88,7 +74,7 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
         {isFavourite? <img src={add_to_favourite}/> : <img src={favourite}/> } 
       </button>
 
-      <button className="theme" onClick={toggleThemeList()}>{themeName}</button>
+      <button className="theme" onClick={() => {toggleThemeList()}}> <p>{videoName}</p> </button>
 
       <button className="previous" onClick={handlePrevious}>
         <img src={previous}></img>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useSyncExternalStore } from 'react';
 import { Taskbar } from "./Components/Taskbar";
 import './App.css';
 import { Fullscreen_button } from "./Components/Fullscreen_button";
@@ -39,6 +39,9 @@ const App = () => {
         // 'startSeconds': startTime,
         // 'endSeconds': endTime
       });
+
+      if (playerRef.current.internalPlayer.getPlayerState() == 1)
+        setPlay(true);
     }
   };
   
@@ -64,17 +67,18 @@ const App = () => {
   }
 
   const opts = {
-    height: '100%',
-    width: '100%',
+    height: '110%',
+    width: '110%',
     videoId: 'cBsUr4UMcD0',
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
       controls: 0,
+      // mute: 1,
       disablekb: 1,
       fs: 0,
       loop: 1,
-      rel: 0,
+      rel: 1,
       modestbranding: 1, // Hide YouTube logo in the control bar
       showinfo: 0, // Hide video title and uploader before the video starts playing
     }
@@ -115,9 +119,16 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       console.log("Themeid changed: " + themeId);
-      
-      var theme = themeData[themeId];
-      setThemeName(theme.name);
+    
+      try{
+        const theme = themeData.find(x => x.id === themeId);
+        var thname = theme.name;
+        setThemeName(thname);
+
+      }
+      catch (err){
+        console.log("thi thoi");
+      }
 
       setVideoData(await fetchVideoData(themeId));
     }
@@ -125,8 +136,11 @@ const App = () => {
     fetchData();
   }, [themeId]);
   
+  //INIT VIDEO CODE
   const [videoCode, setVideoCode] = useState('TxTprtLZurY');
+
   const [themeName, setThemeName] = useState('N/A');
+  const [videoName, setVideoName] = useState('N/A');
   // var videoCode = 'TxTprtLZurY';
 
   useEffect(() => {
@@ -144,12 +158,25 @@ const App = () => {
 
   useEffect(() => {
     if (videoData.length > 0){
-      const video = videoData[videoId];
-      const code = video.song_code;
-      console.log("Video id changed: " + videoId);
-      playVideoById(code);
+      try{
+        const theme = themeData.find(x => x.id === themeId);
+        var thname = theme.name;
+        setThemeName(thname);
+
+        const video = videoData[videoId];
+        const code = video.song_code;
+        const vname = video.name;
+        setVideoName(vname);
+
+        console.log("Video id changed: " + videoId);
+        playVideoById(code);
+
+      }
+      catch (err){
+        console.log("thi thoi");
+      }
     }
-  }, [videoId])
+  }, [videoId, videoCode])
 
   // useEffect(() => {
   //   console.log("Video code changed: " + videoCode);
@@ -159,9 +186,10 @@ const App = () => {
   //#endregion
 
   //#region ThemeList
-  const [openThemeList, setOpenThemeList] = useState(0);
+  const [openThemeList, setOpenThemeList] = useState(false);
 
   const toggleThemeList = () => {
+    console.log("ThemeList clicked!");
     setOpenThemeList(prevState => !prevState);
   };
   //#endregion
@@ -181,7 +209,7 @@ const App = () => {
           </div>
           <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} 
             isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}
-            themeName={themeName} toggleThemeList={toggleThemeList}
+            toggleThemeList={toggleThemeList} themeName={themeName} videoName={videoName} 
           />
       </div>
   );
