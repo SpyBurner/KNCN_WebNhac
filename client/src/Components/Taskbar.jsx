@@ -15,9 +15,9 @@ import options from '../assets/options.svg'
 import { useState } from 'react'
 
 const listVideoID = ['TxTprtLZurY','6-wEAeNcA_A','YVJC6bSvd-o', 'cBsUr4UMcD0']
-export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, videoData, setVideoId, videoId}) => {
+export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, setPlay, isPlaying, videoData, setVideoId, videoId}) => {
   const [isFavourite, setFavour] = useState(false);
-  const [isPlaying, setPlay] = useState(false);
+  // const [isPlaying, setPlay] = useState(false);
   const [isMuted, setMute] = useState(false);
   const [isTimerActive, setActiveTimer] = useState(false);
   const [isTaskActive, setTaskActive] = useState(false);
@@ -33,7 +33,7 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
     } else {
       onPlay(); // Play the video
     }
-    setPlay(prevState => !prevState); // Toggle play state
+    // setPlay(prevState => !prevState); // Toggle play state
   }
 
   const handleNext = () => {

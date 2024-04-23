@@ -24,6 +24,7 @@ const App = () => {
   const playVideo = () => {
     if (playerRef.current) {
       playerRef.current.internalPlayer.playVideo();
+      setPlay(true);
     }
   };
   // Play the video by ID
@@ -44,6 +45,7 @@ const App = () => {
   const pauseVideo = () => {
     if (playerRef.current) {
       playerRef.current.internalPlayer.pauseVideo();
+      setPlay(false);
     }
   };
 
@@ -78,7 +80,7 @@ const App = () => {
   };
 
   //#region Async database variables
-  const [forceUpdateFlag, setForceUpdateFlag] = useState(false);
+  const [isPlaying, setPlay] = useState(false);
 
   const [themeId, setThemeId] = useState(0);
   const [videoId, setVideoId] = useState(0);
@@ -96,10 +98,11 @@ const App = () => {
 
   useEffect(() => {
     if (themeData.length > 0) {
+      console.log(themeData);
       const firstTheme = themeData[0];
       if (firstTheme && firstTheme.id){
         setThemeId(() => {
-          console.log("First theme id " + themeId); 
+          console.log("First theme id " + firstTheme.id); 
           return firstTheme.id;
         });
       }
@@ -126,8 +129,6 @@ const App = () => {
         // setVideoCode(firstVideo.song_code);
         setVideoCode(firstVideo.song_code);
         setVideoId(0);
-
-        setForceUpdateFlag(prevFlag => !prevFlag);  
       }
     }
   }, [videoData]);
@@ -161,7 +162,7 @@ const App = () => {
           <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
             <Todo />
           </div>
-          <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} videoData={videoData} setVideoId={setVideoId} videoId={videoId}/>
+          <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}/>
       </div>
   );
 }
