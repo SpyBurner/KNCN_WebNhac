@@ -5,7 +5,7 @@ import { Fullscreen_button } from "./Components/Fullscreen_button";
 import { Favourite_playlist } from "./Components/Favourite_playlist";
 import { Todo } from "./Components/Todo";
 import YouTube from 'react-youtube';
-import { videoData } from './assets/data';
+import { fetchThemeData, fetchVideoData} from './assets/data';
 
 const App = () => {
   const [openTodolist, setOpenTodoList] = useState(false);
@@ -32,7 +32,6 @@ const App = () => {
       playerRef.current.internalPlayer.pauseVideo();
       // var startSeconds = 0; // Default start time to 0 if not provided
       // var endSeconds = undefined; // Default end time to undefined if not provided
-      console.log(typeof(startTime), " ",startTime);
       playerRef.current.internalPlayer.loadVideoById({
         'videoId': id,
         // 'startSeconds': startTime,
@@ -77,12 +76,81 @@ const App = () => {
       showinfo: 0, // Hide video title and uploader before the video starts playing
     }
   };
-  const index = 0;
-  // const id = 'TxTprtLZurY';
-  const id = videoData[index].song_code;
+
+  //#region Async database variables
+  const [forceUpdateFlag, setForceUpdateFlag] = useState(false);
+
+  const [themeId, setThemeId] = useState(0);
+  const [videoId, setVideoId] = useState(0);
+
+  const [themeData, setThemeData] = useState([]);
+  const [videoData, setVideoData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setThemeData(await fetchThemeData())
+    }
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (themeData.length > 0) {
+      const firstTheme = themeData[0];
+      if (firstTheme && firstTheme.id){
+        setThemeId(() => {
+          console.log("First theme id " + themeId); 
+          return firstTheme.id;
+        });
+      }
+    }
+  }, [themeData]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log("Themeid changed: " + themeId);
+      setVideoData(await fetchVideoData(themeId))
+    }
+
+    fetchData();
+  }, [themeId]);
+  
+  const [videoCode, setVideoCode] = useState('TxTprtLZurY')
+  // var videoCode = 'TxTprtLZurY';
+
+  useEffect(() => {
+    if (videoData.length > 0) {
+      const firstVideo = videoData[0];
+      if (firstVideo && firstVideo.song_code) {
+        console.log("Song code of the first video:", firstVideo.song_code);
+        // setVideoCode(firstVideo.song_code);
+        setVideoCode(firstVideo.song_code);
+        setVideoId(0);
+
+        setForceUpdateFlag(prevFlag => !prevFlag);  
+      }
+    }
+  }, [videoData]);
+
+  useEffect(() => {
+    if (videoData.length > 0){
+      const video = videoData[videoId];
+      const code = video.song_code;
+      console.log("Video id changed: " + videoId);
+      playVideoById(code);
+    }
+  }, [videoId])
+
+  // useEffect(() => {
+  //   console.log("Video code changed: " + videoCode);
+  //   playVideoById(videoCode);
+  // }, [videoCode]);
+
+  //#endregion
+
   return (
       <div className="app">
-        <YouTube className='youtube' videoId={id} opts={opts} ref={playerRef}/>
+        <YouTube key={videoCode} className='youtube' videoId={videoCode} opts={opts} ref={playerRef}/>
           <div className="header">
             <Favourite_playlist />
             <Fullscreen_button />
@@ -90,7 +158,10 @@ const App = () => {
           <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
             <Todo />
           </div>
-          <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} index={index}/>
+          <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
+            <Todo />
+          </div>
+          <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} videoData={videoData} setVideoId={setVideoId} videoId={videoId}/>
       </div>
   );
 }

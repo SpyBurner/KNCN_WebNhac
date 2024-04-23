@@ -13,9 +13,9 @@ import timer from '../assets/timer.svg'
 import active_timer from '../assets/active-timer.svg'
 import options from '../assets/options.svg'
 import { useState } from 'react'
-import { videoData } from '../assets/data.js';
+
 const listVideoID = ['TxTprtLZurY','6-wEAeNcA_A','YVJC6bSvd-o', 'cBsUr4UMcD0']
-export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, index}) => {
+export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, videoData, setVideoId, videoId}) => {
   const [isFavourite, setFavour] = useState(false);
   const [isPlaying, setPlay] = useState(false);
   const [isMuted, setMute] = useState(false);
@@ -37,25 +37,27 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
   }
 
   const handleNext = () => {
-    var len = Object.keys(videoData).length;
-    index = (index + 1) % len;
-    var video = videoData[index];
-    var id = video.song_code;
+    var len = videoData.length;
+    // videoId = (videoId + 1) % len;
+    setVideoId((videoId + 1) % len);
+    // var video = videoData[videoId];
+    // var videoCode = video.song_code;
     // var startTime = parseInt(video.startTime);
     
     // var endTime = parseInt(video.startTime) + parseInt(video.length);
     // console.log(startTime," ", endTime);
-    playVideoById(id, 0, undefined); // Video play the video with the next ID
+    // playVideoById(videoCode, 0, undefined); // Video play the video with the next ID
     setPlay(true);
   }
   const handlePrevious = () => {
-    var len = Object.keys(videoData).length;
-    index = (index - 1 + len) % len;
-    var video = videoData[index];
-    var id = video.song_code;
+    var len = videoData.length;
+    // videoId = (videoId - 1 + len) % len;
+    setVideoId((videoId - 1 + len) % len)
+    // var video = videoData[videoId];
+    // var videoCode = video.song_code;
     // var startTime = parseInt(video.startTime);
     // var endTime = parseInt(video.startTime) + parseInt(video.length);
-    playVideoById(id, 0, undefined); // Video play the video with the previous ID
+    // playVideoById(videoCode, 0, undefined); // Video play the video with the previous ID
     setPlay(true);
   }
   const handleMute = () => {

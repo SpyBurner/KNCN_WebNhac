@@ -29,14 +29,12 @@ export const fetchThemeData = async () => {
         }
         const jsonData = await response.json();
 
-        return themeData = jsonData;
+        return jsonData;
     } catch (error) {
         console.error('Error fetching theme data:', error);
-        return themeData = null; // or handle the error as appropriate
+        return null; // or handle the error as appropriate
     }
 };
-
-export var themeData = await fetchThemeData();
 
 export const fetchVideoData = async (themeId) => {
     try {
@@ -47,14 +45,13 @@ export const fetchVideoData = async (themeId) => {
         }
         const jsonData = await response.json();
 
-        return videoData = jsonData;
+        return jsonData;
     } catch (error) {
         console.error('Error fetching video data:', error);
-        return videoData = null; // or handle the error as appropriate
+        return null; // or handle the error as appropriate
     }
 };
 
-export var videoData = await fetchVideoData(themeData[0].id);
 // {
 //     "0": {
 //         "id": "OiR4Wqi7pGY",

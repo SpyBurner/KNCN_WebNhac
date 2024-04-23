@@ -11,7 +11,7 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "password",
-    database: "sql6686471"
+    database: "kncn_mysql"
 });
 
 con.connect(function (err) {
@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-app.get('/api/themes', (req, res) => {
+app.get('/themes', (req, res) => {
     con.query("SELECT * FROM themes", function (err, result, fields) {
         if (err) {
             console.log("QUERY FAILED!");
@@ -40,7 +40,7 @@ app.get('/api/themes', (req, res) => {
     });
 });
 
-app.get('/api/songs', (req, res) => {
+app.get('/songs', (req, res) => {
     con.query("SELECT * FROM songs WHERE theme_id = '" + req.query.theme + "';", function(err, result, field){
         if (err){
             console.log("QUERY FAILED!");
