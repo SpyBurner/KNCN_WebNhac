@@ -15,7 +15,10 @@ import options from '../assets/options.svg'
 import { useState } from 'react'
 
 const listVideoID = ['TxTprtLZurY','6-wEAeNcA_A','YVJC6bSvd-o', 'cBsUr4UMcD0']
-export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, setPlay, isPlaying, videoData, setVideoId, videoId}) => {
+export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, setPlay, 
+    isPlaying, videoData, setVideoId, videoId,
+    themeName, toggleThemeList
+  }) => {
   const [isFavourite, setFavour] = useState(false);
   // const [isPlaying, setPlay] = useState(false);
   const [isMuted, setMute] = useState(false);
@@ -84,7 +87,9 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
       <button className="favourite" display="" onClick={handleFavourite}>
         {isFavourite? <img src={add_to_favourite}/> : <img src={favourite}/> } 
       </button>
-      <button className="theme">Rain in the forest</button>
+
+      <button className="theme" onClick={toggleThemeList()}>{themeName}</button>
+
       <button className="previous" onClick={handlePrevious}>
         <img src={previous}></img>
       </button>

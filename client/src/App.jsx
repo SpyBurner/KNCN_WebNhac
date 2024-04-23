@@ -6,6 +6,7 @@ import { Favourite_playlist } from "./Components/Favourite_playlist";
 import { Todo } from "./Components/Todo";
 import YouTube from 'react-youtube';
 import { fetchThemeData, fetchVideoData, getRandomInt} from './assets/data';
+import ThemeList from './Components/ThemeList';
 
 const App = () => {
   const [openTodolist, setOpenTodoList] = useState(false);
@@ -106,6 +107,7 @@ const App = () => {
           console.log("First theme id " + firstTheme.id); 
           return firstTheme.id;
         });
+        
       }
     }
   }, [themeData]);
@@ -113,13 +115,18 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       console.log("Themeid changed: " + themeId);
-      setVideoData(await fetchVideoData(themeId))
+      
+      var theme = themeData[themeId];
+      setThemeName(theme.name);
+
+      setVideoData(await fetchVideoData(themeId));
     }
 
     fetchData();
   }, [themeId]);
   
-  const [videoCode, setVideoCode] = useState('TxTprtLZurY')
+  const [videoCode, setVideoCode] = useState('TxTprtLZurY');
+  const [themeName, setThemeName] = useState('N/A');
   // var videoCode = 'TxTprtLZurY';
 
   useEffect(() => {
@@ -151,6 +158,14 @@ const App = () => {
 
   //#endregion
 
+  //#region ThemeList
+  const [openThemeList, setOpenThemeList] = useState(0);
+
+  const toggleThemeList = () => {
+    setOpenThemeList(prevState => !prevState);
+  };
+  //#endregion
+  
   return (
       <div className="app">
         <YouTube key={videoCode} className='youtube' videoId={videoCode} opts={opts} ref={playerRef}/>
@@ -161,10 +176,13 @@ const App = () => {
           <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
             <Todo />
           </div>
-          <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
-            
+          <div className="themelist-container" style={{ display: openThemeList ? 'block' : 'none' }}>
+            <ThemeList/>
           </div>
-          <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}/>
+          <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} 
+            isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}
+            themeName={themeName} toggleThemeList={toggleThemeList}
+          />
       </div>
   );
 }
