@@ -68,7 +68,7 @@ const App = () => {
     videoId: 'cBsUr4UMcD0',
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
-      autoplay: 0,
+      autoplay: 1,
       controls: 0,
       disablekb: 1,
       fs: 0,
