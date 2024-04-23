@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `kncn_mysql` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `kncn_mysql`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: localhost    Database: sql6686471
+-- Host: localhost    Database: kncn_mysql
 -- ------------------------------------------------------
 -- Server version	8.0.36
 
@@ -41,7 +39,7 @@ CREATE TABLE `songs` (
 
 LOCK TABLES `songs` WRITE;
 /*!40000 ALTER TABLE `songs` DISABLE KEYS */;
-INSERT INTO `songs` VALUES (1,'Meet the Pyro','WUhOnX8qt3I',1),(2,'Meet the Soldier','h42d0WHRSck',1),(3,'Meet the Engineer','SNgNBsCI4EA',1),(4,'Meet the Medic','36lSzUMBJnc',1),(5,'lofi hip hop radio ? - beats to relax/study to','jfKfPfyJRdk',2),(6,'peaceful piano radio ? - music to focus/study to','nWjC1RnLYbM',2),(7,'Lofi Hip Hop Chillhop Music Mix GEMN Chill Lo fi Hip Hop Beats FREE 2022','3SeOVVJXOUo',2),(8,'? ????? ? (Rainy Lofi Hip Hop)','VsTY-kyp2Js',2);
+INSERT INTO `songs` VALUES (5,'lofi hip hop radio ? - beats to relax/study to','jfKfPfyJRdk',2),(6,'peaceful piano radio ? - music to focus/study to','nWjC1RnLYbM',2),(7,'Lofi Hip Hop Chillhop Music Mix GEMN Chill Lo fi Hip Hop Beats FREE 2022','3SeOVVJXOUo',2),(8,'? ????? ? (Rainy Lofi Hip Hop)','VsTY-kyp2Js',2);
 /*!40000 ALTER TABLE `songs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +63,7 @@ CREATE TABLE `themes` (
 
 LOCK TABLES `themes` WRITE;
 /*!40000 ALTER TABLE `themes` DISABLE KEYS */;
-INSERT INTO `themes` VALUES (1,'TF2 - Meet the team'),(2,'L0F1'),(3,'Doom OST');
+INSERT INTO `themes` VALUES (2,'L0F1'),(3,'Doom OST');
 /*!40000 ALTER TABLE `themes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -78,4 +76,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-22 20:21:23
+-- Dump completed on 2024-04-23 23:04:02
