@@ -5,7 +5,7 @@ import { Fullscreen_button } from "./Components/Fullscreen_button";
 import { Favourite_playlist } from "./Components/Favourite_playlist";
 import { Todo } from "./Components/Todo";
 import YouTube from 'react-youtube';
-import { fetchThemeData, fetchVideoData} from './assets/data';
+import { fetchThemeData, fetchVideoData, getRandomInt} from './assets/data';
 
 const App = () => {
   const [openTodolist, setOpenTodoList] = useState(false);
@@ -99,7 +99,8 @@ const App = () => {
   useEffect(() => {
     if (themeData.length > 0) {
       console.log(themeData);
-      const firstTheme = themeData[0];
+      let r = getRandomInt(themeData.length);
+      const firstTheme = themeData[r];
       if (firstTheme && firstTheme.id){
         setThemeId(() => {
           console.log("First theme id " + firstTheme.id); 
@@ -123,7 +124,8 @@ const App = () => {
 
   useEffect(() => {
     if (videoData.length > 0) {
-      const firstVideo = videoData[0];
+      let r = getRandomInt(videoData.length);
+      const firstVideo = videoData[r];
       if (firstVideo && firstVideo.song_code) {
         console.log("Song code of the first video:", firstVideo.song_code);
         // setVideoCode(firstVideo.song_code);
@@ -160,7 +162,7 @@ const App = () => {
             <Todo />
           </div>
           <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
-            <Todo />
+            
           </div>
           <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}/>
       </div>

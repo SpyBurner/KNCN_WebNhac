@@ -20,6 +20,11 @@ export const listOfBackground = [
     'TeaCoffeeandBooks-ezgif.com-resize.gif',
 ]
 
+export function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+
 export const fetchThemeData = async () => {
     try {
         const response = await fetch('/api/themes');
