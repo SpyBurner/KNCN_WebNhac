@@ -14,5 +14,5 @@
     border: 1px solid #232931;
 
     background: rgba(62, 50, 69, 0.90);
-
+    position: inherit;
 }

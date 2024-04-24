@@ -41,13 +41,21 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
 
   const handleNext = () => {
     var len = videoData.length;
+    var prevVideoId = videoId;
+    
     setVideoId((videoId + 1) % len);
+    
+    if (prevVideoId != videoId)
     setPlay(true);
   }
   const handlePrevious = () => {
     var len = videoData.length;
+    var prevVideoId = videoId;
+    
     setVideoId((videoId - 1 + len) % len)
-    setPlay(true);
+
+    if (prevVideoId != videoId)
+      setPlay(true);
   }
   const handleMute = () => {
     if (isMuted){

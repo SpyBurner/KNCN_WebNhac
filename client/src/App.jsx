@@ -104,8 +104,8 @@ const App = () => {
   useEffect(() => {
     if (themeData.length > 0) {
       console.log(themeData);
-      let r = getRandomInt(themeData.length);
-      const firstTheme = themeData[r];
+      // let r = getRandomInt(themeData.length);
+      const firstTheme = themeData[0];
       if (firstTheme && firstTheme.id){
         setThemeId(() => {
           console.log("First theme id " + firstTheme.id); 
