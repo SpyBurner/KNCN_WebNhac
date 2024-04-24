@@ -7,6 +7,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  overflow: hidden;
 }
 
 .header {
@@ -49,4 +51,50 @@
 
 .themelist-container::-webkit-scrollbar {
   display: none;
+}
+
+.playlist_button{
+  /* position: absolute; */
+  
+  z-index: 10;
+}
+
+.right-bar{
+  position: absolute;
+  /* position: relative; */
+  top: 22.5vh;
+  right: 0;
+
+  height: 55vh;
+
+  padding-right: 3%;
+
+  /* height: 70vh; */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.playlist-container{
+  display: none;
+
+  border-radius: 20px;
+  border: 1px solid #232931;
+  background: linear-gradient(180deg, rgba(64, 50, 69, 0.75) 0%, rgba(79, 78, 113, 0.80) 50%, rgba(82, 110, 208, 0.85) 100%);
+  
+  padding: 1% 1%;
+
+  width: 20vw;
+  height: 50vh;
+  flex-shrink: 0;
+
+  right: 0;
+
+  position: relative;
+
+  overflow: hidden;
 }

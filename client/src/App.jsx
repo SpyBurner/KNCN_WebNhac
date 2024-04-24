@@ -6,8 +6,11 @@ import { Favourite_playlist } from "./Components/Favourite_playlist";
 import { Todo } from "./Components/Todo";
 import YouTube from 'react-youtube';
 import { fetchThemeData, fetchVideoData, getRandomInt} from './assets/data';
-import ThemeList from './Components/ThemeList';
 import { useFavicon, useWindowSize } from '@uidotdev/usehooks';
+
+import ThemeList from './Components/ThemeList';
+import PlayList from './Components/PlayList';
+import open_playlist from './assets/open_playlist.svg'
 
 const App = () => {
   const [openTodolist, setOpenTodoList] = useState(false);
@@ -236,6 +239,7 @@ const App = () => {
 
   //#endregion
   
+  //#region Automatic video controls
   const handleNext = () => {
     var len = videoData.length;
     var prevVideoId = videoId;
@@ -255,44 +259,6 @@ const App = () => {
     playVideo();
   }
 
-  // const [triggerStateChange, setTriggerStateChange] = useState(false);
-  // const [playerState, setPlayerState] = useState(1);
-
-  // useEffect(() => {
-  //   if (playerRef.current){
-  //     playerRef.current.internalPlayer.addEventListenter("onAutoplayBlocked", () => {
-  //       console.log("Auto play blocked!");
-  //       playVideo();
-  //     })
-    
-  //     playerRef.current.internalPlayer.addEventListenter("onStateChange", (e) => {
-  //       if (e.data == 0) {
-  //         handleNext();
-  //       }
-  //     })
-  //   }
-  // }, [playerRef])
-  
-
-  // useEffect( () => {
-  //   const fetchState = async () => {
-  //     if (!playerRef.current || playerState == 0) return;
-  //     const response = await playerRef.current.internalPlayer.getPlayerState();
-  //     // if (!response.ok)
-  //     //   throw new Error("holy sht");
-  //     const endTime = await playerRef.current.internalPlayer.get
-  //     setPlayerState(response);
-  //   }
-  //   fetchState();
-  // }, [triggerStateChange])
-
-  // useEffect(() => {
-  //   console.log("Current player state: " + playerState);
-  //   if (playerState == 0){
-  //     handleNext();
-  //   }
-  // }, [playerState])
-
   const handleStateChange = (e) => {
     // setTriggerStateChange(prevState => !prevState)
     if (e){
@@ -307,26 +273,52 @@ const App = () => {
   const handleReady = () => {
     playVideo();
   }
+  //#endregion
+
+  //#region Playlist
+  const [openPlayList, setOpenPlayList] = useState(false);
+
+  const togglePlayList = () => {
+    setOpenPlayList(prevState => !prevState);
+  }
+
+  //#endregion
 
   return (
       <div className="app">
         <YouTube key={videoCode} className='youtube' videoId={videoCode} opts={opts} ref={playerRef} onStateChange={handleStateChange} onReady={handleReady}/>
-          <div className="header">
-            <Favourite_playlist />
-            <Fullscreen_button />
+        <div className="header">
+          <Favourite_playlist />
+          <Fullscreen_button />
+        </div>
+        <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
+          <Todo />
+        </div>
+        <div className="themelist-container" style={{ display: openThemeList ? 'block' : 'none' }}>
+          <ThemeList toggleThemeList={toggleThemeList} themeData={themeData} themeName={themeName} setThemeId={setThemeId} />
+        </div>
+
+        <div className='right-bar'>
+
+          <button className="playlist_button" onClick={togglePlayList}
+            style={{
+              transform: (openPlayList) ? 'scaleX(-1)' : 'scaleX(1)'
+            }}>
+            <img src={open_playlist}></img>
+          </button>
+
+          <div className="playlist-container" style={{ display: openPlayList ? 'block' : 'none' }}>
+            <PlayList togglePlayList={togglePlayList} videoData={videoData} videoName={videoName} setVideoId={setVideoId} themeName={themeName}/>
           </div>
-          <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
-            <Todo />
-          </div>
-          <div className="themelist-container" style={{ display: openThemeList ? 'block' : 'none' }}>
-            <ThemeList toggleThemeList={toggleThemeList} themeData={themeData} themeName={themeName} setThemeId={setThemeId} themeId={themeId} />
-          </div>
-          <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} 
-            isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}
-            toggleThemeList={toggleThemeList} openThemeList={openThemeList}
-            themeName={themeName} videoName={videoName} 
-            handleNext={handleNext} handlePrevious={handlePrevious}
-          />
+
+        </div>
+
+        <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} 
+          isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}
+          toggleThemeList={toggleThemeList} openThemeList={openThemeList}
+          themeName={themeName} videoName={videoName} 
+          handleNext={handleNext} handlePrevious={handlePrevious}
+        />
       </div>
   );
 }

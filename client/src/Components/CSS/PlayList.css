@@ -1,0 +1,143 @@
+.playlist{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5% 1% 5% 1%;
+    gap: 10px;
+}
+
+.playlist-header{
+    color: #F6F494;
+    text-align: center;
+    font-family: Coiny;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    border-radius: 20px;
+    background: rgba(35, 41, 49, 0.40);
+
+    width: 80%;
+    height: 5vh;
+    flex-shrink: 0;
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    top: 0;
+}
+
+.playlist-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 1% 1% 1% 1%;
+
+    width: 90%;
+    max-height: 40vh;
+    
+    flex-grow: 1;
+    
+    overflow: visible scroll;
+}
+
+.playlist-body::-webkit-scrollbar {
+    display: none;
+}
+
+.playlist-item{
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    
+    width: 90%;
+    border-radius: 8px;
+    background: rgba(35, 41, 49, 0.60);
+
+    padding: 1% 1% 1% 5%;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    height: min-content;
+}
+
+.playlist.p {
+    height: min-content;
+    width: min-content;
+}
+
+.masked-overflow {
+    /* scroll bar width, for use in mask calculations */
+    --scrollbar-width: 5px;
+
+    /* mask fade distance, for use in mask calculations */
+    --mask-height: 20px;
+
+
+    /* Keep some space between content and scrollbar */
+    /* padding-right: 20px; */
+
+    /* The CSS mask */
+
+    /* The content mask is a linear gradient from top to bottom */
+    --mask-image-content: linear-gradient(
+        to right,
+        transparent,
+        black 0,
+        black calc(100% - var(--mask-height)),
+        transparent
+    );
+
+    /* Here we scale the content gradient to the width of the container 
+  minus the scrollbar width. The height is the full container height */
+    --mask-size-content: calc(100% - var(--scrollbar-width)) 100%;
+
+    /* The scrollbar mask is a black pixel */
+    --mask-image-scrollbar: linear-gradient(black, black);
+
+    /* The width of our black pixel is the width of the scrollbar.
+  The height is the full container height */
+    --mask-size-scrollbar: var(--scrollbar-width) 100%;
+
+    /* Apply the mask image and mask size variables */
+    mask-image: var(--mask-image-content), var(--mask-image-scrollbar);
+    mask-size: var(--mask-size-content), var(--mask-size-scrollbar);
+
+    /* Position the content gradient in the top left, and the 
+  scroll gradient in the top right */
+    mask-position: 0 0, 140% 0;
+
+    /* We don't repeat our mask images */
+    mask-repeat: no-repeat, no-repeat;
+}
+
+
+
+/* .playlist-textScroll{
+    animation: playlist-scroll 7s infinite ease-in-out alternate;
+}
+
+@keyframes playlist-scroll {
+    0%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-75%);
+    }
+} */

@@ -8,7 +8,7 @@
     flex: 1;
 
     border-radius: 75px;
-    border: 2px solid #232931;
+    border: 1px solid #232931;
     background: rgba(82, 74, 121, 0.70);
 
     align-items: center;
@@ -31,11 +31,6 @@ button {
     height: 5vh;
     width: auto;
     flex-shrink: 1;
-}
-
-@keyframes move {
-    0%, 100%   { transform: translate(0, 0); }
-    50% { transform: translate(-100%, 0); }
 }
 
 .theme {
