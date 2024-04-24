@@ -151,6 +151,8 @@ const App = () => {
         console.log("Song code of the first video:", firstVideo.song_code);
         setVideoCode(firstVideo.song_code);
         setVideoId(r);
+
+        setFavVideoData(videoData);
       }
     }
   }, [videoData]);
@@ -277,13 +279,37 @@ const App = () => {
     setOpenPlayList(prevState => !prevState);
   }
 
+  const [openFavPlayList, setOpenFavPlayList] = useState(false);
+  const [prevThemeId, setPrevThemeId] = useState(0);
+
+  const toggleFavPlayList = () => {
+    setOpenFavPlayList(prevState => !prevState);
+  }
+
+  const [favVideoData, setFavVideoData] = useState([]);
+
+  useEffect(() =>{
+    if (openFavPlayList){
+      if (favVideoData.length > 0){
+        setPrevThemeId(themeId);
+        setVideoData(favVideoData);
+      }
+    }
+    else{
+      setThemeId(prevThemeId);
+    }
+  },[openFavPlayList])
+
+
+
   //#endregion
+
 
   return (
       <div className="app">
         <YouTube key={videoCode} className='youtube' videoId={videoCode} opts={opts} ref={playerRef} onStateChange={handleStateChange} onReady={handleReady}/>
         <div className="header">
-          <Favourite_playlist />
+          <Favourite_playlist toggleFavPlayList={toggleFavPlayList} openFavPlayList={openFavPlayList} setOpenThemeList={setOpenThemeList} />
           <Fullscreen_button />
         </div>
         <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
@@ -293,19 +319,25 @@ const App = () => {
           <ThemeList toggleThemeList={toggleThemeList} themeData={themeData} themeName={themeName} setThemeId={setThemeId} />
         </div>
 
+        {/* THIS IS PLAYLIST */}
         <div className='right-bar'>
-
           <button className="playlist_button" onClick={togglePlayList}
             style={{
-              transform: (openPlayList) ? 'scaleX(-1)' : 'scaleX(1)'
+              transform: (openPlayList) ? 'scaleX(-1)' : 'scaleX(1)',
+              display: (openPlayList)? 'none' : 'flex',
             }}>
             <img src={open_playlist}></img>
           </button>
-
           <div className="playlist-container" style={{ display: openPlayList ? 'block' : 'none' }}>
-            <PlayList togglePlayList={togglePlayList} videoData={videoData} videoName={videoName} setVideoId={setVideoId} themeName={themeName}/>
+            <PlayList className={'playlist'} togglePlayList={togglePlayList} videoData={videoData} videoName={videoName} setVideoId={setVideoId} themeName={themeName} hideOnLeave={true}/>
           </div>
-
+        </div>
+        
+        {/* THIS IS FAV PLAYLIST */}
+        <div className='left-bar'>
+          <div className="fav-playlist-container" style={{ display: openFavPlayList ? 'block' : 'none' }}>
+            <PlayList className={'playlist'} togglePlayList={toggleFavPlayList} videoData={videoData} videoName={""} setVideoId={setVideoId} themeName={""} hideOnLeave={false}/>
+          </div>
         </div>
 
         <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} 
@@ -313,6 +345,7 @@ const App = () => {
           toggleThemeList={toggleThemeList} openThemeList={openThemeList}
           themeName={themeName} videoName={videoName} 
           handleNext={handleNext} handlePrevious={handlePrevious}
+          setOpenFavPlayList={setOpenFavPlayList}
         />
       </div>
   );

@@ -21,7 +21,8 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
     isPlaying, videoData, setVideoId, videoId,
     toggleThemeList, openThemeList,
     themeName, videoName,
-    handleNext, handlePrevious
+    handleNext, handlePrevious,
+    setOpenFavPlayList
   }) => {
   const [isFavourite, setFavour] = useState(false);
   // const [isPlaying, setPlay] = useState(false);
@@ -68,7 +69,7 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
         {isFavourite? <img src={add_to_favourite}/> : <img src={favourite}/> } 
       </button>
 
-      <button key={videoName} className="theme" onClick={() => {toggleThemeList()}}>
+      <button key={videoName} className="theme" onClick={() => {toggleThemeList(); setOpenFavPlayList(false)}}>
         <p className='textScroll'>{ ' | ' + videoName + ' | ' + videoName + ' | ' + videoName + ' | ' + videoName +  ' | '}</p> 
       </button>
 

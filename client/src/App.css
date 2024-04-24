@@ -57,40 +57,41 @@
   /* position: absolute; */  
   z-index: 10;
   opacity: .5;
+  scale: 1.5;
 
   transform: translateX(100%);
 
   /* animation: fade-out var(--fade-duration)  ease-out alternate infinite;
   animation-delay: 5s; */
-  animation: run-out var(--fade-duration) forwards;
+  /* animation: run-out var(--fade-duration) forwards; */
 }
 
 :root{
-  --fade-duration: .5s
+  --fade-duration: .1s
 }
 
 .playlist_button:hover{
-  /* animation: fade-in var(--fade-duration) ease-in 1 forwards;
-  animation-iteration-count: 1; */
+  animation: fade-in var(--fade-duration) ease-in 1 forwards;
+  animation-iteration-count: 1;
   opacity: 1;
-  animation: none;
+  /* animation: none; */
 }
 
-@keyframes run-out {
+/* @keyframes run-out {
   0%{transform: translateX(100%);}
   100%{transform: translateX(-10%);}
-}
+} */
 
 @keyframes fade-in {
-  0%{ opacity: 0;}
+  0%{ opacity: .5;}
   100%{opacity: 1;}
 }
 
+/* 
 @keyframes fade-out {
   0% { opacity: 1; }
   100% { opacity: 0; }
-}
-
+} */
 
 
 .right-bar{
@@ -102,6 +103,7 @@
   height: 55vh;
 
   padding-right: 3%;
+  padding-left: 3%;
 
   /* height: 70vh; */
 
@@ -127,6 +129,47 @@
   flex-shrink: 0;
 
   right: 0;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.left-bar{
+  position: absolute;
+  /* position: relative; */
+  top: 22.5vh;
+  left: 0;
+
+  height: 55vh;
+
+  padding-right: 3%;
+  padding-left: 3%;
+
+  /* height: 70vh; */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.fav-playlist-container{
+  display: none;
+
+  border-radius: 20px;
+  border: 1px solid #232931;
+  background: linear-gradient(180deg, rgba(64, 50, 69, 0.75) 0%, rgba(79, 78, 113, 0.80) 50%, rgba(82, 110, 208, 0.85) 100%);
+  
+  padding: 1% 1%;
+
+  width: 20vw;
+  height: 50vh;
+  flex-shrink: 0;
+
+  left: 0;
 
   position: relative;
 
