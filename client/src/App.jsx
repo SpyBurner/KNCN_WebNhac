@@ -188,10 +188,41 @@ const App = () => {
   //#region ThemeList
   const [openThemeList, setOpenThemeList] = useState(false);
 
+  const resetThemeListPos = () => {
+    
+    var container = document.getElementsByClassName("themelist-container").item(0);
+    var button = document.getElementsByClassName("theme").item(0);
+
+    // Set container to display block temporarily to measure its dimensions
+    container.style.display = "block";
+
+    // Calculate button position
+    var buttonRect = button.getBoundingClientRect();
+    var buttonCenterX = buttonRect.left + buttonRect.width / 2;
+    var buttonTopY = buttonRect.top;
+
+    // Calculate container dimensions
+    var containerWidth = container.offsetWidth;
+    var containerHeight = container.offsetHeight;
+
+    // Calculate container position
+    var containerLeft = buttonCenterX - containerWidth / 2;
+    var containerTop = buttonTopY - containerHeight - button.offsetHeight / 2;
+
+    // Set container position
+    container.style.position = "absolute";
+    container.style.left = containerLeft + "px";
+    container.style.top = containerTop + "px";
+  }
+
   const toggleThemeList = () => {
     console.log("ThemeList clicked!");
+    resetThemeListPos();
     setOpenThemeList(prevState => !prevState);
   };
+
+  
+
   //#endregion
   
   return (
@@ -209,7 +240,8 @@ const App = () => {
           </div>
           <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} 
             isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}
-            toggleThemeList={toggleThemeList} themeName={themeName} videoName={videoName} 
+            toggleThemeList={toggleThemeList} openThemeList={openThemeList}
+            themeName={themeName} videoName={videoName} 
           />
       </div>
   );

@@ -6,9 +6,11 @@
     box-sizing: border-box;
     flex-grow: 1;
     flex: 1;
+
     border-radius: 75px;
-    border: 3px solid #232931;
+    border: 2px solid #232931;
     background: rgba(82, 74, 121, 0.70);
+
     align-items: center;
     justify-content: space-between;
     padding: 1.5% 3%;
@@ -60,6 +62,8 @@ button {
 
     overflow: hidden;
 }
+
+
 
 
 .play-stop {

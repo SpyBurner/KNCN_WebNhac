@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-const app = express();
+
 
 var mysql = require('mysql2');
 const e = require('express');
@@ -18,6 +18,8 @@ con.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
 });
+
+const app = express();
 
 app.use(express.static('public'));
 
@@ -49,3 +51,5 @@ app.get('/songs', (req, res) => {
         res.json(result);
     });
 });
+
+

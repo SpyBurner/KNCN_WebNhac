@@ -21,6 +21,10 @@ USE `kncn_mysql`;
 -- Table structure for table `songs`
 --
 
+DROP DATABASE IF EXISTS kncn_mysql;
+CREATE DATABASE kncn_mysql;
+USE kncn_mysql;
+
 DROP TABLE IF EXISTS `songs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;

@@ -1,18 +1,23 @@
 .themelist {
-    display: none;
-    width: 27%;
-    min-width: 10vw;
-    max-height: 30vh;
-    height: 95%;
+    /* display: none;
+    width: 20vw;
+    height: 6vh;
+    flex-shrink: 0;
     border-radius: 20px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 1.4% 3.4%;
-    padding-bottom: 10px;
-    border-radius: 20px;
-    border: 1px solid #232931;
+    border: 1.5px solid #97D8EC;
+    background: #3E3245;
+    margin-left: 1.5vw;
+    color: #F6F494;
+    text-align: center;
+    font-family: Coiny;
+    font-size: 95%;
+    font-style: normal;
+    font-weight: 400;
+    padding: 0 1%;
+    line-height: normal;
+    max-width: 25%; */
 
-    background: rgba(62, 50, 69, 0.90);
-    position: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

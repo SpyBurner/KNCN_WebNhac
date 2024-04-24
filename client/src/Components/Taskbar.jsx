@@ -14,10 +14,13 @@ import active_timer from '../assets/active-timer.svg'
 import options from '../assets/options.svg'
 import { useState } from 'react'
 
+import {ThemeList} from './ThemeList'
+
 const listVideoID = ['TxTprtLZurY','6-wEAeNcA_A','YVJC6bSvd-o', 'cBsUr4UMcD0']
 export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, setPlay, 
     isPlaying, videoData, setVideoId, videoId,
-    toggleThemeList, videoName
+    toggleThemeList, openThemeList,
+    themeName, videoName
   }) => {
   const [isFavourite, setFavour] = useState(false);
   // const [isPlaying, setPlay] = useState(false);
@@ -82,7 +85,9 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
         {isFavourite? <img src={add_to_favourite}/> : <img src={favourite}/> } 
       </button>
 
-      <button className="theme" onClick={() => {toggleThemeList()}}> <p>{videoName}</p> </button>
+      <button className="theme" onClick={() => {toggleThemeList()}}>
+        <p>{videoName}</p> 
+      </button>
 
       <button className="previous" onClick={handlePrevious}>
         <img src={previous}></img>
