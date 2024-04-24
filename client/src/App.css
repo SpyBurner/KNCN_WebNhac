@@ -54,10 +54,44 @@
 }
 
 .playlist_button{
-  /* position: absolute; */
-  
+  /* position: absolute; */  
   z-index: 10;
+  opacity: .5;
+
+  transform: translateX(100%);
+
+  /* animation: fade-out var(--fade-duration)  ease-out alternate infinite;
+  animation-delay: 5s; */
+  animation: run-out var(--fade-duration) forwards;
 }
+
+:root{
+  --fade-duration: .5s
+}
+
+.playlist_button:hover{
+  /* animation: fade-in var(--fade-duration) ease-in 1 forwards;
+  animation-iteration-count: 1; */
+  opacity: 1;
+  animation: none;
+}
+
+@keyframes run-out {
+  0%{transform: translateX(100%);}
+  100%{transform: translateX(-10%);}
+}
+
+@keyframes fade-in {
+  0%{ opacity: 0;}
+  100%{opacity: 1;}
+}
+
+@keyframes fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
 
 .right-bar{
   position: absolute;

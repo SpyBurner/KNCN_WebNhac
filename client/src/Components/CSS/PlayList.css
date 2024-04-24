@@ -21,7 +21,7 @@
     background: rgba(35, 41, 49, 0.40);
 
     width: 80%;
-    height: 5vh;
+    height: auto;
     flex-shrink: 0;
     flex-grow: 1;
 
