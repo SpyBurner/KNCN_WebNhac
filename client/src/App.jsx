@@ -7,7 +7,7 @@ import { Todo } from "./Components/Todo";
 import YouTube from 'react-youtube';
 import { fetchThemeData, fetchVideoData, getRandomInt} from './assets/data';
 import ThemeList from './Components/ThemeList';
-import { useWindowSize } from '@uidotdev/usehooks';
+import { useFavicon, useWindowSize } from '@uidotdev/usehooks';
 
 const App = () => {
   const [openTodolist, setOpenTodoList] = useState(false);
@@ -32,12 +32,12 @@ const App = () => {
   // Play the video by ID
   const playVideoById = (id, startTime, endTime) => {
     if (playerRef.current) {
-      playerRef.current.internalPlayer.pauseVideo();
+      // playerRef.current.internalPlayer.pauseVideo();
       // var startSeconds = 0; // Default start time to 0 if not provided
       // var endSeconds = undefined; // Default end time to undefined if not provided
       playerRef.current.internalPlayer.loadVideoById({
         'videoId': id,
-        // 'startSeconds': startTime,
+        'startSeconds': startTime,
         // 'endSeconds': endTime
       });
 
@@ -104,12 +104,10 @@ const App = () => {
 
   useEffect(() => {
     if (themeData.length > 0) {
-      console.log(themeData);
       // let r = getRandomInt(themeData.length);
       const firstTheme = themeData[0];
       if (firstTheme && firstTheme.id){
         setThemeId(() => {
-          console.log("First theme id " + firstTheme.id); 
           return firstTheme.id;
         });
         
@@ -118,9 +116,7 @@ const App = () => {
   }, [themeData]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      console.log("Themeid changed: " + themeId);
-    
+    const fetchData = async () => {    
       try{
         const theme = themeData.find(x => x.id === themeId);
         var thname = theme.name;
@@ -240,9 +236,81 @@ const App = () => {
 
   //#endregion
   
+  const handleNext = () => {
+    var len = videoData.length;
+    var prevVideoId = videoId;
+    
+    setVideoId((videoId + 1) % len);
+    
+    // if (prevVideoId != videoId)
+    playVideo();
+  }
+  const handlePrevious = () => {
+    var len = videoData.length;
+    var prevVideoId = videoId;
+    
+    setVideoId((videoId - 1 + len) % len)
+
+    // if (prevVideoId != videoId)
+    playVideo();
+  }
+
+  // const [triggerStateChange, setTriggerStateChange] = useState(false);
+  // const [playerState, setPlayerState] = useState(1);
+
+  // useEffect(() => {
+  //   if (playerRef.current){
+  //     playerRef.current.internalPlayer.addEventListenter("onAutoplayBlocked", () => {
+  //       console.log("Auto play blocked!");
+  //       playVideo();
+  //     })
+    
+  //     playerRef.current.internalPlayer.addEventListenter("onStateChange", (e) => {
+  //       if (e.data == 0) {
+  //         handleNext();
+  //       }
+  //     })
+  //   }
+  // }, [playerRef])
+  
+
+  // useEffect( () => {
+  //   const fetchState = async () => {
+  //     if (!playerRef.current || playerState == 0) return;
+  //     const response = await playerRef.current.internalPlayer.getPlayerState();
+  //     // if (!response.ok)
+  //     //   throw new Error("holy sht");
+  //     const endTime = await playerRef.current.internalPlayer.get
+  //     setPlayerState(response);
+  //   }
+  //   fetchState();
+  // }, [triggerStateChange])
+
+  // useEffect(() => {
+  //   console.log("Current player state: " + playerState);
+  //   if (playerState == 0){
+  //     handleNext();
+  //   }
+  // }, [playerState])
+
+  const handleStateChange = (e) => {
+    // setTriggerStateChange(prevState => !prevState)
+    if (e){
+      var state = e.data;
+      console.log("State: "+ e.data);
+      if (state == 0){
+        handleNext();
+      }
+    }
+  }
+
+  const handleReady = () => {
+    playVideo();
+  }
+
   return (
       <div className="app">
-        <YouTube key={videoCode} className='youtube' videoId={videoCode} opts={opts} ref={playerRef}/>
+        <YouTube key={videoCode} className='youtube' videoId={videoCode} opts={opts} ref={playerRef} onStateChange={handleStateChange} onReady={handleReady}/>
           <div className="header">
             <Favourite_playlist />
             <Fullscreen_button />
@@ -257,6 +325,7 @@ const App = () => {
             isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}
             toggleThemeList={toggleThemeList} openThemeList={openThemeList}
             themeName={themeName} videoName={videoName} 
+            handleNext={handleNext} handlePrevious={handlePrevious}
           />
       </div>
   );

@@ -20,7 +20,8 @@ const listVideoID = ['TxTprtLZurY','6-wEAeNcA_A','YVJC6bSvd-o', 'cBsUr4UMcD0']
 export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, setPlay, 
     isPlaying, videoData, setVideoId, videoId,
     toggleThemeList, openThemeList,
-    themeName, videoName
+    themeName, videoName,
+    handleNext, handlePrevious
   }) => {
   const [isFavourite, setFavour] = useState(false);
   // const [isPlaying, setPlay] = useState(false);
@@ -42,24 +43,6 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
     // setPlay(prevState => !prevState); // Toggle play state
   }
 
-  const handleNext = () => {
-    var len = videoData.length;
-    var prevVideoId = videoId;
-    
-    setVideoId((videoId + 1) % len);
-    
-    // if (prevVideoId != videoId)
-    onPlay();
-  }
-  const handlePrevious = () => {
-    var len = videoData.length;
-    var prevVideoId = videoId;
-    
-    setVideoId((videoId - 1 + len) % len)
-
-    // if (prevVideoId != videoId)
-    onPlay();
-  }
   const handleMute = () => {
     if (isMuted){
       setMute(false);
