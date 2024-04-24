@@ -7,6 +7,7 @@ import { Todo } from "./Components/Todo";
 import YouTube from 'react-youtube';
 import { fetchThemeData, fetchVideoData, getRandomInt} from './assets/data';
 import ThemeList from './Components/ThemeList';
+import { useWindowSize } from '@uidotdev/usehooks';
 
 const App = () => {
   const [openTodolist, setOpenTodoList] = useState(false);
@@ -186,14 +187,19 @@ const App = () => {
   //#endregion
 
   //#region ThemeList
+  const windowSize = useWindowSize();
   const [openThemeList, setOpenThemeList] = useState(false);
 
-  const resetThemeListPos = () => {
+  const resetThemeListTransform = () => {
     
     var container = document.getElementsByClassName("themelist-container").item(0);
     var button = document.getElementsByClassName("theme").item(0);
 
+    container.style.width = (button.offsetWidth + button.style.margin.left + button.style.padding.left) * 2;
+
     // Set container to display block temporarily to measure its dimensions
+    var originalDisplay = container.style.display;
+
     container.style.display = "block";
 
     // Calculate button position
@@ -207,19 +213,26 @@ const App = () => {
 
     // Calculate container position
     var containerLeft = buttonCenterX - containerWidth / 2;
-    var containerTop = buttonTopY - containerHeight - button.offsetHeight / 2;
+    var containerTop = buttonTopY - containerHeight - button.offsetHeight / 4;
 
     // Set container position
+
     container.style.position = "absolute";
     container.style.left = containerLeft + "px";
     container.style.top = containerTop + "px";
+    
+    //Restore display style
+    container.style.display = originalDisplay;
   }
 
   const toggleThemeList = () => {
     console.log("ThemeList clicked!");
-    resetThemeListPos();
     setOpenThemeList(prevState => !prevState);
   };
+
+  useEffect(() => {
+    resetThemeListTransform();
+  }, [openThemeList, windowSize]);
 
   
 
