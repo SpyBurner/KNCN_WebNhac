@@ -1,5 +1,6 @@
 import './CSS/PlayList.css'; // Import CSS file
 import PropTypes from 'prop-types';
+import PlayListItem from './PlayListItem';
 
 export const PlayList = ({togglePlayList, videoData, videoName, setVideoId, themeName}) => {
     PlayList.propTypes = {
@@ -10,16 +11,14 @@ export const PlayList = ({togglePlayList, videoData, videoName, setVideoId, them
         themeName: PropTypes.string
     }
 
-
     const generateItem = () => {
         if (videoData.length > 0){
             console.log(videoData);
             return videoData.map(video => (
-                <div key={video.id} className='playlist-item'>
-                    <span className='playlist-scroll  masked-overflow'>
-                        {video.name}
-                    </span>
-                </div>
+                <PlayListItem key={video.id} videoName={videoName} 
+                thisVideoName={video.name} thisVideoId={video.id} setVideoId={setVideoId}>
+                    
+                </PlayListItem>
             ));
         }
         return <div></div>

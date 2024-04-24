@@ -75,12 +75,15 @@
     overflow: hidden;
 
     height: min-content;
+    cursor: pointer;
 }
 
 .playlist.p {
     height: min-content;
     width: min-content;
 }
+
+
 
 .masked-overflow {
     /* scroll bar width, for use in mask calculations */
