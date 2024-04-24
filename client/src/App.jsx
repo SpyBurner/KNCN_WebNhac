@@ -238,8 +238,6 @@ const App = () => {
     resetThemeListTransform();
   }, [openThemeList, windowSize]);
 
-  
-
   //#endregion
   
   return (

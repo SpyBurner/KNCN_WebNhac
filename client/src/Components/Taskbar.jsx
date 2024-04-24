@@ -86,7 +86,7 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
       </button>
 
       <button key={videoName} className="theme" onClick={() => {toggleThemeList()}}>
-        <p>{videoName}</p> 
+        <p className='fade'>{videoName}</p> 
       </button>
 
       <button className="previous" onClick={handlePrevious}>

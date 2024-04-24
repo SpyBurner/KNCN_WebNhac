@@ -44,4 +44,9 @@
   flex-shrink: 0;
 
   position: absolute; /* Set position to absolute */
+  overflow: scroll;
+}
+
+.themelist-container::-webkit-scrollbar {
+  display: none;
 }

@@ -10,7 +10,9 @@ export const ThemeList = ({themeData, themeName}) => {
   const generateItems = () => {
     if (themeData.length > 0){
       return themeData.map(theme => (
-        <div key={theme.id} className="theme-item">
+        <div key={theme.name}  
+          className="theme-item" 
+          style={{border: (theme.name === themeName)? '2px solid #F6F494' : '2px solid #3E3245'}}>
           <span>{theme.name}</span>
         </div>
       ));

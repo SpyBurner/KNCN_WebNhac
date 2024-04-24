@@ -57,14 +57,17 @@ button {
     max-width: 25%;
 
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
+
+    text-wrap: nowrap;
 
     overflow: hidden;
 }
 
-
-
+.fade {
+    -webkit-mask-image: linear-gradient(90deg, #000 60%, transparent);
+  }
 
 .play-stop {
     height: 5.5vh;
