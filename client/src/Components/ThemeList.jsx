@@ -1,21 +1,26 @@
-import { useEffect } from 'react';
 import './CSS/ThemeList.css'; // Import CSS file
 import PropTypes from 'prop-types';
+import ThemeListItem from './ThemeListItem';
 
-export const ThemeList = ({themeData, themeName}) => {
+export const ThemeList = ({toggleThemeList, themeData, themeName, setThemeId }) => {
   ThemeList.propTypes = {
     themeData: PropTypes.array.isRequired,
+    toggleThemeList: PropTypes.func,
+    themeName: PropTypes.string,
+    setThemeId: PropTypes.func,
   };
 
   const generateItems = () => {
     if (themeData.length > 0){
+
       return themeData.map(theme => (
-        <div key={theme.name}  
-          className="theme-item" 
-          style={{border: (theme.name === themeName)? '2px solid #F6F494' : '2px solid #3E3245'}}>
-          <span>{theme.name}</span>
-        </div>
+        <ThemeListItem key={theme.name} className="theme-item" 
+        toggleThemeList={toggleThemeList} setThemeId={setThemeId}
+        thisThemeName={theme.name} thisThemeId={theme.id} themeName={themeName}
+        >
+        </ThemeListItem>
       ));
+
     }
     return <div></div>
   };

@@ -57,10 +57,10 @@ button {
     max-width: 25%;
 
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
 
-    text-wrap: nowrap;
+    /* text-wrap: nowrap; */
 
     overflow: hidden;
 }

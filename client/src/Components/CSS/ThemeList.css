@@ -33,4 +33,6 @@
     display: flex; /* Change display to block */
     justify-content: center;
     align-items: center;
+
+    cursor: pointer;
 }

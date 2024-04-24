@@ -251,7 +251,7 @@ const App = () => {
             <Todo />
           </div>
           <div className="themelist-container" style={{ display: openThemeList ? 'block' : 'none' }}>
-            <ThemeList themeData={themeData} themeName={themeName} setThemeId={setThemeId} themeId={themeId} />
+            <ThemeList toggleThemeList={toggleThemeList} themeData={themeData} themeName={themeName} setThemeId={setThemeId} themeId={themeId} />
           </div>
           <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} 
             isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}
