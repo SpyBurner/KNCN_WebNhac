@@ -13,11 +13,9 @@ export const PlayList = ({togglePlayList, videoData, videoName, setVideoId, them
 
     const generateItem = () => {
         if (videoData.length > 0){
-            console.log(videoData);
-            return videoData.map(video => (
+            return videoData.map((video, index) => (
                 <PlayListItem key={video.id} videoName={videoName} 
-                thisVideoName={video.name} thisVideoId={video.id} setVideoId={setVideoId}>
-                    
+                    thisVideoName={video.name} thisVideoId={index} setVideoId={setVideoId}>
                 </PlayListItem>
             ));
         }

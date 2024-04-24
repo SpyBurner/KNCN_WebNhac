@@ -11,6 +11,7 @@ export const PlayListItem = ({videoName, thisVideoName, thisVideoId, setVideoId}
 
 
     const handleClick = () => {
+        console.log("Video clicked")
         setVideoId(thisVideoId)
     }
 

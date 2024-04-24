@@ -162,12 +162,12 @@ const App = () => {
         var thname = theme.name;
         setThemeName(thname);
 
+        // setVideoCode(code);
+
         const video = videoData[videoId];
         const code = video.song_code;
         const vname = video.name;
         setVideoName(vname);
-
-        // setVideoCode(code);
 
         console.log("Video id changed: " + videoId);
 
@@ -175,15 +175,10 @@ const App = () => {
 
       }
       catch (err){
-        console.log("thi thoi");
+        console.log(err);
       }
     }
   }, [videoId, videoCode])
-
-  // useEffect(() => {
-  //   console.log("Video code changed: " + videoCode);
-  //   playVideoById(videoCode);
-  // }, [videoCode]);
 
   //#endregion
 
