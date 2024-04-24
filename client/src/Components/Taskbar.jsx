@@ -86,7 +86,7 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
       </button>
 
       <button key={videoName} className="theme" onClick={() => {toggleThemeList()}}>
-        <p>{videoName}</p> 
+        <p className='textScroll'>{ ' | ' + videoName + ' | ' + videoName + ' | ' + videoName + ' | ' + videoName +  ' | '}</p> 
       </button>
 
       <button className="previous" onClick={handlePrevious}>

@@ -41,7 +41,7 @@ const App = () => {
         // 'endSeconds': endTime
       });
 
-      if (playerRef.current.internalPlayer.getPlayerState() == 1)
+      // if (playerRef.current.internalPlayer.getPlayerState() == 1)
         setPlay(true);
     }
   };
