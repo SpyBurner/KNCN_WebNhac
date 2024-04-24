@@ -10,7 +10,7 @@ const { log } = require('console');
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "password",
+    password: "Tinnie19082004",
     database: "kncn_mysql"
 });
 

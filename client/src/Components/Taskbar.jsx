@@ -20,7 +20,7 @@ const listVideoID = ['TxTprtLZurY','6-wEAeNcA_A','YVJC6bSvd-o', 'cBsUr4UMcD0']
 export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, setPlay, 
     isPlaying, videoData, setVideoId, videoId,
     toggleThemeList, openThemeList,
-    themeName, videoName
+    themeName, videoName, onToggleTimer
   }) => {
   const [isFavourite, setFavour] = useState(false);
   // const [isPlaying, setPlay] = useState(false);
@@ -100,9 +100,8 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
       </button>
       <button className="volumn" onClick={handleMute}>
         {isMuted?<img src={mute}/>:<img src={unmute}/>}
-        
       </button>
-      <button className="timer" onClick={handleTimer}>
+      <button className="timer" onClick={() => {onToggleTimer(); handleTimer();}}>
         {isTimerActive?<img src={active_timer}/>:<img src={timer}/>}
       </button>
       <button className="todo-list-icon" onClick={() => {onToggleTodo(); handleTask();}}>

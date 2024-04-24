@@ -8,9 +8,11 @@ import YouTube from 'react-youtube';
 import { fetchThemeData, fetchVideoData, getRandomInt} from './assets/data';
 import ThemeList from './Components/ThemeList';
 import { useWindowSize } from '@uidotdev/usehooks';
+import { PomodoroTimer } from './Components/PomodoroTimer';
 
 const App = () => {
   const [openTodolist, setOpenTodoList] = useState(false);
+  const [openTimer, setOpenTimer] = useState(false);
   const [totalTask, setTotalTask] = useState(0);
   const playerRef = useRef(null);
   // const [isPlayerReady, setPlayerReady] = useState(false);
@@ -21,6 +23,10 @@ const App = () => {
 
   const toggleTodoVisibility = () => {
     setOpenTodoList(prevState => !prevState);
+  };
+
+  const toggleTimerVisibility = () => {
+    setOpenTimer(prevState => !prevState);
   };
 
   const playVideo = () => {
@@ -248,13 +254,16 @@ const App = () => {
           <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
             <Todo />
           </div>
+          <div className="pomodoro-container" style={{ display: openTimer ? 'block' : 'none' }}>
+            <PomodoroTimer />
+          </div>
           <div className="themelist-container" style={{ display: openThemeList ? 'block' : 'none' }}>
             <ThemeList/>
           </div>
           <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} 
             isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}
             toggleThemeList={toggleThemeList} openThemeList={openThemeList}
-            themeName={themeName} videoName={videoName} 
+            themeName={themeName} videoName={videoName} onToggleTimer={toggleTimerVisibility} 
           />
       </div>
   );
