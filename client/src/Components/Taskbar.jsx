@@ -12,7 +12,7 @@ import active_todo from '../assets/active-todo.svg'
 import timer from '../assets/timer.svg'
 import active_timer from '../assets/active-timer.svg'
 import options from '../assets/options.svg'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import {ThemeList} from './ThemeList'
 
@@ -48,8 +48,8 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
     
     setVideoId((videoId + 1) % len);
     
-    if (prevVideoId != videoId)
-    setPlay(true);
+    // if (prevVideoId != videoId)
+    onPlay();
   }
   const handlePrevious = () => {
     var len = videoData.length;
@@ -57,8 +57,8 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
     
     setVideoId((videoId - 1 + len) % len)
 
-    if (prevVideoId != videoId)
-      setPlay(true);
+    // if (prevVideoId != videoId)
+    onPlay();
   }
   const handleMute = () => {
     if (isMuted){
@@ -85,7 +85,7 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
         {isFavourite? <img src={add_to_favourite}/> : <img src={favourite}/> } 
       </button>
 
-      <button className="theme" onClick={() => {toggleThemeList()}}>
+      <button key={videoName} className="theme" onClick={() => {toggleThemeList()}}>
         <p>{videoName}</p> 
       </button>
 

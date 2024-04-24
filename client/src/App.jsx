@@ -150,9 +150,8 @@ const App = () => {
       const firstVideo = videoData[r];
       if (firstVideo && firstVideo.song_code) {
         console.log("Song code of the first video:", firstVideo.song_code);
-        // setVideoCode(firstVideo.song_code);
         setVideoCode(firstVideo.song_code);
-        setVideoId(0);
+        setVideoId(r);
       }
     }
   }, [videoData]);
@@ -169,7 +168,10 @@ const App = () => {
         const vname = video.name;
         setVideoName(vname);
 
+        // setVideoCode(code);
+
         console.log("Video id changed: " + videoId);
+
         playVideoById(code);
 
       }
@@ -195,7 +197,9 @@ const App = () => {
     var container = document.getElementsByClassName("themelist-container").item(0);
     var button = document.getElementsByClassName("theme").item(0);
 
-    container.style.width = (button.offsetWidth + button.style.margin.left + button.style.padding.left) * 2;
+    // container.style.width = (button.offsetWidth + button.style.margin.left + button.style.padding.left) * 2;
+    // container.style.maxWidth = container.style.width;
+    // container.style.minWidth = container.style.width;
 
     // Set container to display block temporarily to measure its dimensions
     var originalDisplay = container.style.display;
@@ -249,7 +253,7 @@ const App = () => {
             <Todo />
           </div>
           <div className="themelist-container" style={{ display: openThemeList ? 'block' : 'none' }}>
-            <ThemeList/>
+            <ThemeList themeData={themeData} themeName={themeName} setThemeId={setThemeId} themeId={themeId} />
           </div>
           <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} 
             isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}
