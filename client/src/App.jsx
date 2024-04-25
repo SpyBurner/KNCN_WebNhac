@@ -121,6 +121,12 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {    
+      if (themeId == -1){
+        setThemeName("Favorite");
+        setVideoData(favPlayList);
+        return;
+      }
+
       try{
         const theme = themeData.find(x => x.id === themeId);
         var thname = theme.name;
@@ -152,8 +158,6 @@ const App = () => {
         console.log("Song code of the first video:", firstVideo.song_code);
         setVideoCode(firstVideo.song_code);
         setVideoId(r);
-
-        setFavVideoData(videoData);
       }
     }
   }, [videoData]);
@@ -281,27 +285,21 @@ const App = () => {
   }
 
   const [openFavPlayList, setOpenFavPlayList] = useState(false);
-  const [prevThemeId, setPrevThemeId] = useState(0);
+  const [favPlayList, setFavPlayList] = useState([]);
+
+  useEffect(()=>{
+    setFavPlayList(localStorage.getItem('favPlayList'));
+  }, [favPlayList])
 
   const toggleFavPlayList = () => {
     setOpenFavPlayList(prevState => !prevState);
   }
 
-  const [favVideoData, setFavVideoData] = useState([]);
-
   useEffect(() =>{
     if (openFavPlayList){
-      if (favVideoData.length > 0){
-        setPrevThemeId(themeId);
-        setVideoData(favVideoData);
-      }
-    }
-    else{
-      setThemeId(prevThemeId);
+      setThemeId(-1);
     }
   },[openFavPlayList])
-
-
 
   //#endregion
 
