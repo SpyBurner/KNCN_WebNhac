@@ -19,11 +19,11 @@ import PropTypes from 'prop-types'
 import {ThemeList} from './ThemeList'
 
 export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, setPlay, 
-    isPlaying, videoData, setVideoId, videoId,
-    toggleThemeList, openThemeList,
-    themeName, videoName,
+    isPlaying, videoData, setVideoId, videoId, openTodoList,
+    toggleThemeList, openThemeList, openTimer,
+    themeName, videoName, onToggleTimer,
     handleNext, handlePrevious,
-    setOpenFavPlayList, favPlayList, setFavPlayList//favorite
+    setOpenFavPlayList, favPlayList, setFavPlayList//favorite, onToggleTimer
   }) => {
 
   Taskbar.propTypes = {
@@ -114,10 +114,6 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
     setActiveTimer(!isTimerActive);
   }
 
-  const handleTask = () => {
-    setTaskActive(!isTaskActive);
-  }
-
   return (
     <div className="taskbar">
       <button className="favourite" display="" onClick={handleFavourite}>
@@ -139,13 +135,12 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
       </button>
       <button className="volumn" onClick={handleMute}>
         {isMuted?<img src={mute}/>:<img src={unmute}/>}
-        
       </button>
-      <button className="timer" onClick={handleTimer}>
-        {isTimerActive?<img src={active_timer}/>:<img src={timer}/>}
+      <button className="timer" onClick={() => {onToggleTimer()}}>
+        {openTimer?<img src={active_timer}/>:<img src={timer}/>}
       </button>
-      <button className="todo-list-icon" onClick={() => {onToggleTodo(); handleTask();}}>
-        {isTaskActive?<img src={active_todo}/>:<img src={todo_list}/>}
+      <button className="todo-list-icon" onClick={() => {onToggleTodo(); }}>
+        {openTodoList?<img src={active_todo}/>:<img src={todo_list}/>}
       </button>
       <button className="options">
         <img src={options}></img>

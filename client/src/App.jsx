@@ -11,9 +11,11 @@ import { useFavicon, useWindowSize } from '@uidotdev/usehooks';
 import ThemeList from './Components/ThemeList';
 import PlayList from './Components/PlayList';
 import open_playlist from './assets/open_playlist.svg'
+import { PomodoroTimer } from './Components/PomodoroTimer';
 
 const App = () => {
   const [openTodolist, setOpenTodoList] = useState(false);
+  const [openTimer, setOpenTimer] = useState(false);
   const [totalTask, setTotalTask] = useState(0);
   const playerRef = useRef(null);
   // const [isPlayerReady, setPlayerReady] = useState(false);
@@ -23,7 +25,13 @@ const App = () => {
   }, []);
 
   const toggleTodoVisibility = () => {
+    if (openTimer) toggleTimerVisibility();
     setOpenTodoList(prevState => !prevState);
+  };
+
+  const toggleTimerVisibility = () => {
+    if (openTodolist) toggleTodoVisibility();
+    setOpenTimer(prevState => !prevState);
   };
 
   const playVideo = () => {
@@ -341,7 +349,10 @@ const App = () => {
           <Fullscreen_button />
         </div>
         <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
-          <Todo />
+          <Todo onToggleTodo={toggleTodoVisibility}/>
+          </div>
+          <div className="pomodoro-container" style={{ display: openTimer ? 'block' : 'none' }}>
+            <PomodoroTimer onToggleTimer={toggleTimerVisibility}/>
         </div>
         <div className="themelist-container" style={{ display: openThemeList ? 'block' : 'none' }}>
           <ThemeList toggleThemeList={toggleThemeList} themeData={themeData} themeName={themeName} setThemeId={setThemeId} />
@@ -368,10 +379,10 @@ const App = () => {
           </div>
         </div>
 
-        <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} 
+        <Taskbar onToggleTodo={toggleTodoVisibility} openTodoList={openTodolist} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} 
           isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}
-          toggleThemeList={toggleThemeList} openThemeList={openThemeList}
-          themeName={themeName} videoName={videoName} 
+          toggleThemeList={toggleThemeList} openThemeList={openThemeList} openTimer={openTimer}
+          themeName={themeName} videoName={videoName} onToggleTimer={toggleTimerVisibility} 
           handleNext={handleNext} handlePrevious={handlePrevious}
           setOpenFavPlayList={setOpenFavPlayList} favPlayList={favPlayList} setFavPlayList={setFavPlayList}
         />

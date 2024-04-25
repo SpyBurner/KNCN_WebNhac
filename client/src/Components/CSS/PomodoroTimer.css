@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Coiny&display=swap');
+
+.coiny-regular {
+    font-family: "Coiny", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }  
+
+.timer-clock {
+    color: #F6F494;
+    font-size: 75px;
+    width: 100%;
+    text-align: center;
+}
+
+.header-timer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
+  border-bottom: #FFF solid 1px;
+  padding: 0 16px;
+}
+
+.timer-container {
+  min-height: 43%;
+  max-height: 100%;
+  max-width: 100%;
+  border-radius: 30px;
+  border: 1px solid #232931;
+  background: rgba(62, 50, 69, 0.90);
+  color: #FFF;
+  display: flex;
+  flex: 0 1 33%;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding-bottom: 16px;
+}
+
+.alice-regular {
+  font-family: "Alice", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.timer-title {
+  font-size: 30px;
+  width: 100%;
+  padding: 8px 0;
+  text-align: center;
+}
+
+.progress-bar {
+  max-height: 90%;
+  min-width: 13%;
+  transition: height 1s linear; /* Add smooth transition effect */
+  flex: 0 0 auto;
+}
+
+.timer-container1 {
+  min-width: 80%;
+  display: flex;
+  margin-top: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.timer-container2, .timer-container3, .settings {
+  display: flex;
+  flex-direction: column;
+  /* margin-right: 16px; */
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.timer-container2 {
+  min-width: 50%;
+  max-width: 50%;
+}
+
+.start-stop {
+  /* box-sizing: border-box; */
+  display: block;
+  width: 60%;
+  height: 25%;
+  font-size: 25px;
+  border-radius: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: transparent;
+  border: #F6F494 1px solid;
+  color: #C1C1C1;
+  cursor: pointer;
+}
+
+.timer-container3 button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 8px;
+}
+
+svg {
+  height: 40px;
+  width: auto;
+}
+
+.settings{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: #FFF solid 1px; */
+  padding-left: 100px;
+}
+
+.setting {
+  padding: 2px 0 ;
+  display: block;
+}
+
+input {
+  width: 20%;
+  text-align: center;
+  background: rgba(35, 41, 49, 0.60);
+  border-radius: 10px ;
+  color: white;
+}

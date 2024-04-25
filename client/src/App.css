@@ -175,3 +175,15 @@
 
   overflow: hidden;
 }
+
+
+.pomodoro-container {
+  display: flex;
+  min-height: 336px;
+  max-height: 55%;
+  width: 33%;
+  min-width: 502px;
+  /* flex-shrink: 0; */
+
+  /* position: absolute; Set position to absolute */
+}
