@@ -85,6 +85,7 @@ const App = () => {
       rel: 1,
       modestbranding: 1, // Hide YouTube logo in the control bar
       showinfo: 0, // Hide video title and uploader before the video starts playing
+      origin: 'http://localhost:5173/'
     }
   };
 
