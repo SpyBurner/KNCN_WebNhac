@@ -26,8 +26,8 @@
 
 .timer-container {
   min-height: 43%;
-  max-height: 100%;
-  max-width: 100%;
+  /* max-height: 100%;
+  max-width: 100%; */
   border-radius: 30px;
   border: 1px solid #232931;
   background: rgba(62, 50, 69, 0.90);
@@ -76,6 +76,11 @@
   /* margin-right: 16px; */
   align-items: center;
   /* justify-content: center; */
+}
+
+
+.timer-container3{
+  gap: 35%;
 }
 
 .timer-container2 {
