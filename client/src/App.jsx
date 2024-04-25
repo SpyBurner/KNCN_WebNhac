@@ -91,12 +91,12 @@ const App = () => {
 
   //#region Async database variables
   const [isPlaying, setPlay] = useState(false);
-
-  const [themeId, setThemeId] = useState(0);
-  const [videoId, setVideoId] = useState(0);
-
+  
   const [themeData, setThemeData] = useState([]);
   const [videoData, setVideoData] = useState([]);
+  
+  const [themeId, setThemeId] = useState(0);
+  const [videoId, setVideoId] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -144,11 +144,11 @@ const App = () => {
   }, [themeId]);
   
   //INIT VIDEO CODE
-  const [videoCode, setVideoCode] = useState('TxTprtLZurY');
+  const [initVideoCode, setinitVideoCode] = useState('TxTprtLZurY');
 
   const [themeName, setThemeName] = useState('N/A');
   const [videoName, setVideoName] = useState('N/A');
-  // var videoCode = 'TxTprtLZurY';
+  const [videoCode, setVideoCode] = useState('N/A');
 
   useEffect(() => {
     if (videoData.length > 0) {
@@ -156,7 +156,7 @@ const App = () => {
       const firstVideo = videoData[r];
       if (firstVideo && firstVideo.song_code) {
         console.log("Song code of the first video:", firstVideo.song_code);
-        setVideoCode(firstVideo.song_code);
+        setinitVideoCode(firstVideo.song_code);
         setVideoId(r);
       }
     }
@@ -169,10 +169,13 @@ const App = () => {
         var thname = theme.name;
         setThemeName(thname);
 
-        // setVideoCode(code);
+        // setinitVideoCode(code);
 
         const video = videoData[videoId];
+        
         const code = video.song_code;
+        setVideoCode(code);
+
         const vname = video.name;
         setVideoName(vname);
 
@@ -185,7 +188,7 @@ const App = () => {
         console.log(err);
       }
     }
-  }, [videoId, videoCode])
+  }, [videoId, initVideoCode])
 
   //#endregion
 
@@ -289,6 +292,10 @@ const App = () => {
 
   useEffect(()=>{
     setFavPlayList(localStorage.getItem('favPlayList'));
+  }, [])
+
+  useEffect(()=>{
+    localStorage.setItem('favPlayList', favPlayList);
   }, [favPlayList])
 
   const toggleFavPlayList = () => {
@@ -296,7 +303,7 @@ const App = () => {
   }
 
   useEffect(() =>{
-    if (openFavPlayList){
+    if (openFavPlayList && themeId != -1){
       setThemeId(-1);
     }
   },[openFavPlayList])
@@ -306,7 +313,7 @@ const App = () => {
 
   return (
       <div className="app">
-        <YouTube key={videoCode} className='youtube' videoId={videoCode} opts={opts} ref={playerRef} onStateChange={handleStateChange} onReady={handleReady}/>
+        <YouTube key={initVideoCode} className='youtube' videoId={initVideoCode} opts={opts} ref={playerRef} onStateChange={handleStateChange} onReady={handleReady}/>
         <div className="header">
           <Favourite_playlist toggleFavPlayList={toggleFavPlayList} openFavPlayList={openFavPlayList} setOpenThemeList={setOpenThemeList} />
           <Fullscreen_button />
@@ -344,7 +351,7 @@ const App = () => {
           toggleThemeList={toggleThemeList} openThemeList={openThemeList}
           themeName={themeName} videoName={videoName} 
           handleNext={handleNext} handlePrevious={handlePrevious}
-          setOpenFavPlayList={setOpenFavPlayList}
+          setOpenFavPlayList={setOpenFavPlayList} favPlayList={favPlayList} setFavPlayList={setFavPlayList} videoCode={videoCode} themeId={themeId}
         />
       </div>
   );

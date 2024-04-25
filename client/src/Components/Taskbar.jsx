@@ -14,16 +14,23 @@ import active_timer from '../assets/active-timer.svg'
 import options from '../assets/options.svg'
 import { useEffect, useRef, useState } from 'react'
 
+import PropTypes from 'prop-types'
+
 import {ThemeList} from './ThemeList'
 
-const listVideoID = ['TxTprtLZurY','6-wEAeNcA_A','YVJC6bSvd-o', 'cBsUr4UMcD0']
 export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, setPlay, 
     isPlaying, videoData, setVideoId, videoId,
     toggleThemeList, openThemeList,
     themeName, videoName,
     handleNext, handlePrevious,
-    setOpenFavPlayList
+    setOpenFavPlayList, favPlayList, setFavPlayList, videoCode, themeId//favorite
   }) => {
+
+  Taskbar.propTypes = {
+      favPlayList: PropTypes.array,
+      videoData: PropTypes.array,
+  }
+
   const [isFavourite, setFavour] = useState(false);
   // const [isPlaying, setPlay] = useState(false);
   const [isMuted, setMute] = useState(false);
@@ -31,7 +38,37 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
   const [isTaskActive, setTaskActive] = useState(false);
   var video = document.querySelector('iframe[src*="youtube.com"]');
 
+  useEffect(()=>{
+    if (favPlayList.length > 0){
+      for (var video in favPlayList){
+        if (video.song_code == videoCode){
+          setFavour(true);
+        }
+      }
+    }
+  }, [])
+
   const handleFavourite = () => {
+    if (videoData.length > 0){
+      var temp = favPlayList;
+      var vidDbId = videoData[videoId].id;
+      var item ={'id': vidDbId, 'name': videoName, 'theme_id': themeId, 'song_code': videoCode} 
+      
+      if (favourite) {
+        temp.push(item);
+      }
+      
+      if (!favourite){
+        const index = temp.indexOf(item);
+        if (index > -1) { // only splice array when item is found
+          temp.splice(index, 1); // 2nd parameter means remove one item only
+        }
+      }
+      
+      setFavPlayList(temp);
+    }
+
+
     setFavour(!isFavourite);
   };
 
