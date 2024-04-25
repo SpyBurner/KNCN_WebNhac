@@ -18,8 +18,8 @@ import {ThemeList} from './ThemeList'
 
 const listVideoID = ['TxTprtLZurY','6-wEAeNcA_A','YVJC6bSvd-o', 'cBsUr4UMcD0']
 export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlayerUnMute, playVideoById, setPlay, 
-    isPlaying, videoData, setVideoId, videoId,
-    toggleThemeList, openThemeList,
+    isPlaying, videoData, setVideoId, videoId, openTodoList,
+    toggleThemeList, openThemeList, openTimer,
     themeName, videoName, onToggleTimer
   }) => {
   const [isFavourite, setFavour] = useState(false);
@@ -75,10 +75,6 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
     setActiveTimer(!isTimerActive);
   }
 
-  const handleTask = () => {
-    setTaskActive(!isTaskActive);
-  }
-
   return (
     <div className="taskbar">
       <button className="favourite" display="" onClick={handleFavourite}>
@@ -101,11 +97,11 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
       <button className="volumn" onClick={handleMute}>
         {isMuted?<img src={mute}/>:<img src={unmute}/>}
       </button>
-      <button className="timer" onClick={() => {onToggleTimer(); handleTimer();}}>
-        {isTimerActive?<img src={active_timer}/>:<img src={timer}/>}
+      <button className="timer" onClick={() => {onToggleTimer()}}>
+        {openTimer?<img src={active_timer}/>:<img src={timer}/>}
       </button>
-      <button className="todo-list-icon" onClick={() => {onToggleTodo(); handleTask();}}>
-        {isTaskActive?<img src={active_todo}/>:<img src={todo_list}/>}
+      <button className="todo-list-icon" onClick={() => {onToggleTodo(); }}>
+        {openTodoList?<img src={active_todo}/>:<img src={todo_list}/>}
       </button>
       <button className="options">
         <img src={options}></img>

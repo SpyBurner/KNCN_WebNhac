@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
+
 .todo {
     display: none;
     width: 27%;
@@ -8,7 +10,7 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    padding: 1.4% 3.4%;
+    padding: 1.4% 0;
     padding-bottom: 10px;
     border-radius: 20px;
     border: 1px solid #232931;
@@ -17,15 +19,25 @@
 
 }
 
+
+#close-todo svg{
+    width: 100%;
+    height: auto;
+}
+
 .todo-header {
     display: flex;
     color: white;
     width: 100%;
+    font-family: "Alice", serif;
     font-style: normal;
     font-size: 30px;
     font-weight: 400;
     align-items: center;
     justify-content: space-between;
+    border-bottom: #fff solid 1px;
+    box-sizing: border-box;
+    padding: 0 16px;
 }
 
 
@@ -41,7 +53,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 16px;
-    padding: 0 8px;
+    padding: 0 16px;
 }
 
 .todo-input {
@@ -50,30 +62,33 @@
     border: none;
     outline: none;
     width: 70%;
-    height: 30%;
+    height: 40%;
     padding: 10px 0px;
     padding-left: 20px;
     padding-right: 15%;
     font-size: 15px;
+    color: black;
+    text-align: left;
 }
 
 .todo-add-btn{
     border-radius: 50px;
     background: #DC9DFA;
-    width: 30%;
-    height: 30%;
+    width: 25%;
+    height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: -10%;
     color: #fff;
-    font-size: 15px;
+    font-size: 18px;
     padding: 10px 0px;
     font-weight: 600;
     cursor: pointer;
 }
 
 .todo-list {
+    padding: 0 16px;
     margin-top: 16px;
     min-height: 135px;
     max-height: 135px;
@@ -82,6 +97,7 @@
 }
 
 .done-task-number {
+    padding: 0 16px;
     display: flex;
     font-family: "Akaya Kanadaka", system-ui;
     font-weight: 400;

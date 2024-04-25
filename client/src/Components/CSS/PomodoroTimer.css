@@ -7,11 +7,21 @@
     font-style: normal;
   }  
 
-.timer{
+.timer-clock {
     color: #F6F494;
     font-size: 75px;
     width: 100%;
     text-align: center;
+}
+
+.header-timer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
+  border-bottom: #FFF solid 1px;
+  padding: 0 16px;
 }
 
 .timer-container {
@@ -39,8 +49,7 @@
 .timer-title {
   font-size: 30px;
   width: 100%;
-  padding: 12px 0;
-  border-bottom: #FFF solid 1px;
+  padding: 8px 0;
   text-align: center;
 }
 
@@ -78,12 +87,11 @@
   /* box-sizing: border-box; */
   display: block;
   width: 60%;
-  height: 20%;
+  height: 25%;
   font-size: 25px;
-  margin-top: 80px;
   border-radius: 20px;
   padding-top: 5px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   padding-left: 15px;
   padding-right: 15px;
   background-color: transparent;
@@ -92,7 +100,7 @@
   cursor: pointer;
 }
 
-button {
+.timer-container3 button {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -100,7 +108,7 @@ button {
 }
 
 svg {
-  height: 45px;
+  height: 40px;
   width: auto;
 }
 

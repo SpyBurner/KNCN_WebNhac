@@ -22,10 +22,12 @@ const App = () => {
   }, []);
 
   const toggleTodoVisibility = () => {
+    if (openTimer) toggleTimerVisibility();
     setOpenTodoList(prevState => !prevState);
   };
 
   const toggleTimerVisibility = () => {
+    if (openTodolist) toggleTodoVisibility();
     setOpenTimer(prevState => !prevState);
   };
 
@@ -252,17 +254,17 @@ const App = () => {
             <Fullscreen_button />
           </div>
           <div className="todo-container" style={{ display: openTodolist ? 'block' : 'none' }}>
-            <Todo />
+            <Todo onToggleTodo={toggleTodoVisibility}/>
           </div>
           <div className="pomodoro-container" style={{ display: openTimer ? 'block' : 'none' }}>
-            <PomodoroTimer />
+            <PomodoroTimer onToggleTimer={toggleTimerVisibility}/>
           </div>
           <div className="themelist-container" style={{ display: openThemeList ? 'block' : 'none' }}>
             <ThemeList/>
           </div>
-          <Taskbar onToggleTodo={toggleTodoVisibility} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} 
+          <Taskbar onToggleTodo={toggleTodoVisibility} openTodoList={openTodolist} onPlay={playVideo} onPause={pauseVideo} setPlayerMute={handlePlayerMute} setPlayerUnMute={handlePlayerUnMute} playVideoById={playVideoById} setPlay={setPlay} 
             isPlaying={isPlaying} videoData={videoData} setVideoId={setVideoId} videoId={videoId}
-            toggleThemeList={toggleThemeList} openThemeList={openThemeList}
+            toggleThemeList={toggleThemeList} openThemeList={openThemeList} openTimer={openTimer}
             themeName={themeName} videoName={videoName} onToggleTimer={toggleTimerVisibility} 
           />
       </div>

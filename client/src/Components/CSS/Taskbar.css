@@ -1,6 +1,6 @@
 .taskbar {
     display: flex;
-    max-height: 8%;
+    max-height: 5%;
     max-width: 60%;
     min-width: 580px;
     box-sizing: border-box;
@@ -28,7 +28,7 @@ button {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    height: 5vh;
+    height: 4vh;
     width: auto;
     flex-shrink: 1;
 }
@@ -40,7 +40,7 @@ button {
 
 .theme {
     width: 20vw;
-    height: 6vh;
+    height: 5vh;
     flex-shrink: 0;
     border-radius: 20px;
     border: 1.5px solid #97D8EC;
