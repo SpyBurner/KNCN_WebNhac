@@ -152,7 +152,9 @@ const App = () => {
 
   useEffect(() => {
     if (videoData.length > 0) {
+      
       let r = getRandomInt(videoData.length);
+      if (themeId == -1) r = 0;
       const firstVideo = videoData[r];
       if (firstVideo && firstVideo.song_code) {
         console.log("Song code of the first video:", firstVideo.song_code);
@@ -165,9 +167,6 @@ const App = () => {
   useEffect(() => {
     if (videoData.length > 0){
       try{
-        const theme = themeData.find(x => x.id === themeId);
-        var thname = theme.name;
-        setThemeName(thname);
 
         // setinitVideoCode(code);
 
@@ -179,8 +178,7 @@ const App = () => {
         const vname = video.name;
         setVideoName(vname);
 
-        console.log("Video id changed: " + videoId);
-
+        console.log("Video id changed: " + videoId);  
         playVideoById(code);
 
       }
@@ -268,7 +266,6 @@ const App = () => {
     // setTriggerStateChange(prevState => !prevState)
     if (e){
       var state = e.data;
-      console.log("State: "+ e.data);
       if (state == 0){
         handleNext();
       }
@@ -290,12 +287,25 @@ const App = () => {
   const [openFavPlayList, setOpenFavPlayList] = useState(false);
   const [favPlayList, setFavPlayList] = useState([]);
 
-  useEffect(()=>{
-    setFavPlayList(localStorage.getItem('favPlayList'));
-  }, [])
+  const [favFirstFetch, setFavFirstFetch] = useState(true);
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('favPlayList'));
+    if (items) {
+      console.log("Getting favPlayList: ");
+      console.log(items);
+      setFavPlayList(items);
+    }
+  }, []);
 
   useEffect(()=>{
-    localStorage.setItem('favPlayList', favPlayList);
+    if (favFirstFetch){
+      setFavFirstFetch(false);
+      return;
+    }
+    console.log("Setting favPlayList: ");
+    console.log(favPlayList);
+    localStorage.setItem('favPlayList', JSON.stringify(favPlayList));
   }, [favPlayList])
 
   const toggleFavPlayList = () => {
@@ -303,8 +313,20 @@ const App = () => {
   }
 
   useEffect(() =>{
+    if (favPlayList.length == 0){
+      if (themeId == -1 && themeData.length > 0){
+        setThemeId(themeData[0].id);
+      }
+      return;
+    }
     if (openFavPlayList && themeId != -1){
       setThemeId(-1);
+    }
+    else{
+      if (themeData.length > 0){
+        // let r = getRandomInt(themeData.length);
+        setThemeId(themeData[0].id); 
+      }
     }
   },[openFavPlayList])
 
@@ -341,7 +363,7 @@ const App = () => {
         
         {/* THIS IS FAV PLAYLIST */}
         <div className='left-bar'>
-          <div className="fav-playlist-container" style={{ display: openFavPlayList ? 'block' : 'none' }}>
+          <div className="fav-playlist-container" style={{ display: openFavPlayList ? 'none' : 'none' }}>
             <PlayList className={'playlist'} togglePlayList={toggleFavPlayList} videoData={videoData} videoName={""} setVideoId={setVideoId} themeName={""} hideOnLeave={false}/>
           </div>
         </div>
@@ -351,7 +373,7 @@ const App = () => {
           toggleThemeList={toggleThemeList} openThemeList={openThemeList}
           themeName={themeName} videoName={videoName} 
           handleNext={handleNext} handlePrevious={handlePrevious}
-          setOpenFavPlayList={setOpenFavPlayList} favPlayList={favPlayList} setFavPlayList={setFavPlayList} videoCode={videoCode} themeId={themeId}
+          setOpenFavPlayList={setOpenFavPlayList} favPlayList={favPlayList} setFavPlayList={setFavPlayList}
         />
       </div>
   );

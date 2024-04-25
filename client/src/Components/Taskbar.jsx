@@ -23,7 +23,7 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
     toggleThemeList, openThemeList,
     themeName, videoName,
     handleNext, handlePrevious,
-    setOpenFavPlayList, favPlayList, setFavPlayList, videoCode, themeId//favorite
+    setOpenFavPlayList, favPlayList, setFavPlayList//favorite
   }) => {
 
   Taskbar.propTypes = {
@@ -32,44 +32,62 @@ export const Taskbar = ({ onToggleTodo, onPlay, onPause, setPlayerMute, setPlaye
   }
 
   const [isFavourite, setFavour] = useState(false);
-  // const [isPlaying, setPlay] = useState(false);
+
   const [isMuted, setMute] = useState(false);
   const [isTimerActive, setActiveTimer] = useState(false);
   const [isTaskActive, setTaskActive] = useState(false);
-  var video = document.querySelector('iframe[src*="youtube.com"]');
 
   useEffect(()=>{
-    if (favPlayList.length > 0){
-      for (var video in favPlayList){
-        if (video.song_code == videoCode){
-          setFavour(true);
-        }
+    console.log("Is favorite? "+isFavourite)
+    console.log("Searching in favourite...");
+    if (favPlayList.length > 0 && videoData.length > 0){
+      const item = videoData[videoId]; 
+
+      var index;
+      for (index = 0; index < favPlayList.length; ++index){
+        const video = favPlayList[index];
+        if (video.id == item.id) break;
+      }
+      
+      if (index < favPlayList.length){
+        console.log("Favorite found!");
+        setFavour(true);
+        return;
       }
     }
-  }, [])
+    setFavour(false);
+  }, [videoId, favPlayList])
 
   const handleFavourite = () => {
-    if (videoData.length > 0){
-      var temp = favPlayList;
-      var vidDbId = videoData[videoId].id;
-      var item ={'id': vidDbId, 'name': videoName, 'theme_id': themeId, 'song_code': videoCode} 
+    //CHANGING FAVPLAYLIST BEFORE SETTING FAVORITE VARIABLE
+    try{     
+      //ARRAY ASSIGNING IN JS CREATES SHALLOW COPIES
+      var temp = JSON.parse(JSON.stringify(favPlayList));
+      var item = videoData[videoId]; 
       
-      if (favourite) {
+      if (!isFavourite) {
         temp.push(item);
       }
-      
-      if (!favourite){
-        const index = temp.indexOf(item);
-        if (index > -1) { // only splice array when item is found
+      else{
+        // console.log(item);
+        var index;
+        for (index = 0; index < temp.length; ++index){
+          const video = temp[index];
+          if (video.id == item.id) break;
+        }
+
+        if (index < temp.length) {
           temp.splice(index, 1); // 2nd parameter means remove one item only
         }
       }
       
       setFavPlayList(temp);
     }
+    catch (err){
+      throw new Error(err);
+    }
 
-
-    setFavour(!isFavourite);
+    setFavour(prevState => !prevState);
   };
 
   const handlePlay = () => {
