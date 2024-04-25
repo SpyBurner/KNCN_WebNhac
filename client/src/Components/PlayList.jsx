@@ -2,7 +2,7 @@ import './CSS/PlayList.css'; // Import CSS file
 import PropTypes from 'prop-types';
 import PlayListItem from './PlayListItem';
 
-export const PlayList = ({ className, togglePlayList, videoData, videoName, setVideoId, themeName, hideOnLeave}) => {
+export const PlayList = ({ className, togglePlayList, videoData, videoName, setVideoId, themeName}) => {
     PlayList.propTypes = {
         className: PropTypes.string,
         togglePlayList: PropTypes.func,
@@ -10,7 +10,6 @@ export const PlayList = ({ className, togglePlayList, videoData, videoName, setV
         videoName: PropTypes.string,
         setVideoId: PropTypes.func,
         themeName: PropTypes.string,
-        hideOnLeave: PropTypes.bool
     }
 
     const generateItem = () => {
@@ -25,7 +24,7 @@ export const PlayList = ({ className, togglePlayList, videoData, videoName, setV
     }
 
   return (
-    <div key={videoData} className={className} onMouseLeave={hideOnLeave ? togglePlayList : ()=>{}}>
+    <div key={videoData} className={className}>
         <div className='playlist-header' 
         style={{
             display: (videoName == "") ? 'none' : 'flex'

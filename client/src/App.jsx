@@ -328,8 +328,8 @@ const App = () => {
             }}>
             <img src={open_playlist}></img>
           </button>
-          <div className="playlist-container" style={{ display: openPlayList ? 'block' : 'none' }}>
-            <PlayList className={'playlist'} togglePlayList={togglePlayList} videoData={videoData} videoName={videoName} setVideoId={setVideoId} themeName={themeName} hideOnLeave={true}/>
+          <div className="playlist-container" onMouseLeave={togglePlayList} style={{ display: openPlayList ? 'block' : 'none' }}>
+            <PlayList className={'playlist'} togglePlayList={togglePlayList} videoData={videoData} videoName={videoName} setVideoId={setVideoId} themeName={themeName} />
           </div>
         </div>
         
