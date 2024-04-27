@@ -48,7 +48,7 @@ const App = () => {
       // var endSeconds = undefined; // Default end time to undefined if not provided
       playerRef.current.internalPlayer.loadVideoById({
         'videoId': id,
-        'startSeconds': startTime,
+        // 'startSeconds': startTime,
         // 'endSeconds': endTime
       });
 
