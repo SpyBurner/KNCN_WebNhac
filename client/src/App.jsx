@@ -290,7 +290,7 @@ const App = () => {
 
   const togglePlayList = () => {
     setOpenPlayList(prevState => !prevState);
-  }
+  } 
 
   const [openFavPlayList, setOpenFavPlayList] = useState(false);
   const [favPlayList, setFavPlayList] = useState([]);
